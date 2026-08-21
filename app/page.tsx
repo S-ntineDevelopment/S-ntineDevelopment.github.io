@@ -146,8 +146,7 @@ export default function Home() {
     <main>
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="S ntinel home">
-          <span className="brand-mark">S</span>
-          <span>S_ntinel</span>
+          <img className="brand-logo" src="/sntinel-logo.svg" alt="S_ntinel" />
         </a>
         <div className="nav-links">
           <a href="#work">Work</a>

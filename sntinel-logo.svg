@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 220" role="img" aria-labelledby="title desc">
+  <title id="title">S_ntinel Roblox Studio Luau developer logo</title>
+  <desc id="desc">A blocky selected Part with Roblox Studio transform axes and Luau script symbols beside the S_ntinel wordmark.</desc>
+  <g transform="translate(10 10)">
+    <rect width="200" height="200" rx="28" fill="#20252a"/>
+    <rect x="14" y="14" width="172" height="172" rx="18" fill="#d9d7cf"/>
+    <rect x="14" y="14" width="172" height="26" rx="18" fill="#343c42"/>
+    <rect x="14" y="28" width="172" height="12" fill="#343c42"/>
+    <circle cx="31" cy="27" r="4" fill="#e56d2f"/>
+    <circle cx="45" cy="27" r="4" fill="#d8b25d"/>
+    <circle cx="59" cy="27" r="4" fill="#6aa477"/>
+    <path d="M31 73h138M31 106h138M31 139h138M64 53v112M97 53v112M130 53v112" stroke="#c1c1b9" stroke-width="1" opacity=".72"/>
+    <path d="M40 157h55v14H40z" fill="#2d353b"/>
+    <path d="M48 163l10-9M48 163l10 9M66 154l-10 9M66 172l10-9" fill="none" stroke="#f6f5f0" stroke-width="3" stroke-linecap="square"/>
+    <path d="M78 77 119 58 160 77 119 97Z" fill="#f6f5f0" stroke="#20252a" stroke-width="4"/>
+    <path d="M78 77v43l41 22V97Z" fill="#858b8e" stroke="#20252a" stroke-width="4"/>
+    <path d="M119 97v45l41-22V77Z" fill="#5f686e" stroke="#20252a" stroke-width="4"/>
+    <path d="M78 77 119 58 160 77 119 97Z" fill="none" stroke="#e56d2f" stroke-width="4"/>
+    <path d="M119 97V48" stroke="#e56d2f" stroke-width="5" stroke-linecap="round"/>
+    <path d="m119 39-9 15h18Z" fill="#e56d2f"/>
+    <path d="M119 97 166 122" stroke="#4e91c8" stroke-width="5" stroke-linecap="round"/>
+    <path d="m175 127-17-2 8-14Z" fill="#4e91c8"/>
+    <path d="M119 97 78 119" stroke="#67a676" stroke-width="5" stroke-linecap="round"/>
+    <path d="m69 124 10-14 7 15Z" fill="#67a676"/>
+    <circle cx="119" cy="97" r="7" fill="#f6f5f0" stroke="#20252a" stroke-width="3"/>
+    <rect x="27" y="50" width="20" height="20" rx="3" fill="#e56d2f"/>
+    <rect x="153" y="149" width="20" height="20" rx="3" fill="#4e91c8"/>
+  </g>
+  <text x="242" y="145" fill="#20252a" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="800" letter-spacing="-4">S_ntinel</text>
+  <rect x="244" y="164" width="492" height="5" rx="2.5" fill="#e56d2f"/>
+</svg>
