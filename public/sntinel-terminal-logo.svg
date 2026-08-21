@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">S_ntinel terminal logo</title>
+  <desc id="desc">A transparent terminal-style logo with the S_ntinel wordmark in code font.</desc>
+  <defs>
+    <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#49ff91"/>
+      <stop offset="1" stop-color="#9cff57"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="1180" height="300" rx="30" fill="#0b1211" stroke="url(#border)" stroke-width="6"/>
+  <path d="M10 76h1180" stroke="#21332e" stroke-width="3"/>
+  <circle cx="48" cy="43" r="10" fill="#ff5d63"/>
+  <circle cx="82" cy="43" r="10" fill="#f4c95d"/>
+  <circle cx="116" cy="43" r="10" fill="#49ff91"/>
+  <path d="M170 43h86" stroke="#294a43" stroke-width="8" stroke-linecap="round"/>
+  <path d="M318 43h42" stroke="#286044" stroke-width="8" stroke-linecap="round"/>
+  <text x="75" y="218" fill="#49ff91" font-family="Consolas, 'Courier New', monospace" font-size="122" font-weight="700" letter-spacing="-5" filter="url(#glow)">&gt;</text>
+  <text x="170" y="218" fill="#e8fff0" font-family="Consolas, 'Courier New', monospace" font-size="122" font-weight="700" letter-spacing="-6">S<tspan fill="#49ff91">_</tspan>ntinel</text>
+  <rect x="1016" y="126" width="12" height="111" rx="6" fill="#49ff91" opacity=".95" filter="url(#glow)"/>
+  <path d="M1048 178h80M1088 138v80" stroke="#24483e" stroke-width="3" opacity=".9"/>
+</svg>
