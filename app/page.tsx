@@ -1,99 +1,55 @@
 const projects = [
   {
     number: '01',
-    kicker: 'Project Infamy · source architecture',
-    title: 'Gameplay systems with a clear chain of custody.',
+    kicker: 'Project Infamy · Roblox gameplay project',
+    title: 'A modular foundation for a growing Roblox experience.',
     description:
-      'Infamy is where I have been pushing a contract-first foundation across combat, NPCs, grow systems, property, inventory, and persistence.',
-    examples: [
-      'Combat intent is checked at the network boundary before it reaches authoritative state.',
-      'Composition roots inject ports for accounts, inventory, protection, tools, visuals, and publishing.',
-      'Property placement and grow persistence keep authored content, durable state, and runtime materialization separate.',
-    ],
-    tags: ['Strict Luau', 'Contracts', 'Ports & composition'],
-    status: 'Source implementation',
+      'Project Infamy is a large gameplay project built around combat, NPCs, player progression, property, economy, and live game systems.',
+    work: 'My work covers the gameplay architecture and the systems that turn player actions into reliable game state.',
+    tags: ['Gameplay systems', 'Luau', 'Roblox Studio'],
+    status: 'Active project',
     accent: 'orange',
   },
   {
     number: '02',
-    kicker: 'SCV2 ReWrite · systems and fixtures',
-    title: 'Input that is responsive without becoming authority.',
+    kicker: 'SCV2 ReWrite · systems rewrite',
+    title: 'Rebuilding the systems behind a roleplay experience.',
     description:
-      'The SCV2 rewrite explores the difficult middle ground between responsive client presentation and server-owned movement, vehicles, inventory, and roleplay state.',
-    examples: [
-      'Movement forwarding carries generation, context revision, sequence, freshness, and rate limits.',
-      'Vehicle driving validates the player, seat, vehicle session, config revision, and replay-safe sequence.',
-      'Vehicle raycast dynamics has one focused suspension solver with explicit landing, curb, grip, and cleanup behavior.',
-    ],
-    tags: ['Authority', 'Vehicles', 'Lifecycle fixtures'],
-    status: 'Rewrite / verification work',
+      'SCV2 ReWrite is a ground-up systems project focused on making movement, vehicles, inventory, UI, and roleplay features easier to extend.',
+    work: 'I work across character movement, vehicle handling, inventory transactions, minimap presentation, and shared package boundaries.',
+    tags: ['Systems rewrite', 'Vehicles', 'Networking'],
+    status: 'Rewrite in progress',
     accent: 'blue',
   },
   {
     number: '03',
-    kicker: 'Reusable proof seams · Luau',
-    title: 'Small boundaries that make edge cases executable.',
+    kicker: 'Development practice · Luau',
+    title: 'Reliable code that other developers can work with.',
     description:
-      'I like extracting the rule into a narrow module or fixture so it can be read, challenged with bad input, and composed into a larger runtime later.',
-    examples: [
-      'Pure fixtures exercise replay, stale revisions, malformed payloads, capacity, rollback, and teardown.',
-      'Result-shaped returns keep failure reasons visible instead of hiding them in deep callbacks.',
-      'Named owners make it possible to answer who creates, mutates, presents, and destroys a resource.',
-    ],
-    tags: ['Deterministic tests', 'Result flows', 'Ownership'],
-    status: 'How I build',
+      'Alongside game features, I build reusable modules and focused tests that make complicated behaviour easier to maintain and improve.',
+    work: 'I focus on clear ownership, sensible module boundaries, safe server logic, and practical handling of edge cases.',
+    tags: ['Modular code', 'Testing', 'Maintainability'],
+    status: 'Part of every project',
     accent: 'green',
   },
 ];
 
 const principles = [
-  ['01', 'Read the contract first', 'Before a feature grows, I want its inputs, outputs, invariants, failure codes, and ownership to be visible.'],
-  ['02', 'Keep authority explicit', 'The client can feel immediate and look polished. The server still validates the request and owns the truth.'],
-  ['03', 'Compose, do not conceal', 'Dependencies are injected through narrow ports so a system can be tested without importing half the game.'],
-  ['04', 'Finish the lifecycle', 'Cleanup, cancellation, replay, player removal, and failed writes are part of the feature—not a later patch.'],
+  ['01', 'Build for the player', 'The goal is a responsive, understandable experience—not complexity for its own sake.'],
+  ['02', 'Make it dependable', 'Important game state is checked and protected so features behave consistently in a live experience.'],
+  ['03', 'Leave it usable', 'I write systems that are readable, modular, and practical for the next developer to extend.'],
 ];
 
-const examples = [
-  {
-    number: '01',
-    title: 'Combat admission',
-    path: 'Infamy / Combat / FireAdmission + NetworkBoundary',
-    status: 'Source implementation',
-    description:
-      'A fire request is not trusted because it came from a player. The boundary checks payload size, identity, actor ownership, sequence freshness, rate limits, cadence, equipped state, reload state, and ammunition before publishing a correction.',
-    result: 'Input → validate → mutate → correct',
-    accent: 'orange',
-  },
-  {
-    number: '02',
-    title: 'Movement forwarding',
-    path: 'SCV2 / tools / movement / CharacterMovementForwardingFixture',
-    status: 'Pure contract fixture',
-    description:
-      'The fixture models client intent, server admission, and snapshot presentation. It deliberately challenges actor identity, generations, context revisions, magnitude, replay, vault availability, rate limits, and stopped lifecycles.',
-    result: 'Intent → admission → snapshot',
-    accent: 'blue',
-  },
-  {
-    number: '03',
-    title: 'Vehicle authority',
-    path: 'SCV2 / tools / vehiclechassis / VehicleRaycastDynamicsCore',
-    status: 'Core + fixture evidence',
-    description:
-      'Vehicle physics is kept behind a focused raycast dynamics core. Separate driving admission validates session identity, config revision, generation, context, sequence, and timing before an accepted state is produced.',
-    result: 'Driver intent → accepted state → dynamics',
-    accent: 'purple',
-  },
-  {
-    number: '04',
-    title: 'Durable state and recovery',
-    path: 'Infamy / Grow / Persistence + SCV2 / Inventory fixtures',
-    status: 'Boundary and fixture evidence',
-    description:
-      'Persistence boundaries validate document identity and schema, preserve revisions, and keep account failures visible. Inventory fixtures cover mutation gates, save acknowledgement, replay receipts, capacity, rollback, and recovery-required states.',
-    result: 'Read → validate → apply → recover',
-    accent: 'green',
-  },
+type Capability = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+const capabilities: Capability[] = [
+  { number: '01', title: 'Gameplay scripting', description: 'Combat, NPCs, tools, properties, progression, and interactive world systems.' },
+  { number: '02', title: 'Roblox systems', description: 'Character movement, vehicles, inventory, UI, networking, persistence, and lifecycle logic.' },
+  { number: '03', title: 'Development support', description: 'Debugging, refactoring, technical planning, documentation, and maintainable Luau modules.' },
 ];
 
 type Video = {
@@ -109,14 +65,14 @@ const videos: Video[] = [
   {
     number: '01',
     title: 'Gameplay showcase',
-    description: 'Show the player-facing result: the interaction, the feedback, and the moment where the system becomes visible.',
+    description: 'A short clip showing a finished feature or player-facing system.',
     label: 'Add a YouTube or Vimeo link',
     // Add embedUrl: 'https://www.youtube.com/embed/VIDEO_ID' when ready.
   },
   {
     number: '02',
-    title: 'Systems walkthrough',
-    description: 'Use a short recording to explain the problem, the contract, the edge cases, and the trade-offs behind a feature.',
+    title: 'Development walkthrough',
+    description: 'A concise explanation of a system, the problem it solved, and the result.',
     label: 'Add a local MP4 or WebM',
     // Add src: '/videos/your-clip.mp4' after placing the file in public/videos.
   },
@@ -150,9 +106,8 @@ export default function Home() {
         </a>
         <div className="nav-links">
           <a href="#work">Work</a>
-          <a href="#examples">Examples</a>
+          <a href="#about">About</a>
           <a href="#videos">Demos</a>
-          <a href="#approach">Approach</a>
           <a href="#contact">Contact</a>
         </div>
         <a className="nav-cta" href="#contact">Let&apos;s talk <span>↗</span></a>
@@ -160,43 +115,41 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> Roblox scripter · Luau systems developer</p>
-          <h1>Code that gives<br /><em>gameplay a backbone.</em></h1>
+          <p className="eyebrow"><span className="status-dot" /> Roblox Studio · Luau developer</p>
+          <h1>I build Roblox gameplay systems that <em>players can feel.</em></h1>
           <p className="hero-lede">
-            I build Roblox systems where the player experience feels immediate because the rules underneath are explicit, testable, and owned by the right layer.
+            I script and improve the systems behind Roblox experiences—from combat and vehicles to player features, tools, and world interaction.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#work">Explore my work <span>↓</span></a>
-            <a className="text-link" href="#examples">See real examples <span>↘</span></a>
+            <a className="button button-primary" href="#work">View selected work <span>↓</span></a>
+            <a className="text-link" href="#contact">Work with me <span>↗</span></a>
           </div>
-          <div className="hero-proof"><span>Infamy</span><i>×</i><span>SCV2 ReWrite</span><i>×</i><span>Strict Luau</span></div>
+          <div className="hero-proof"><span>Roblox Studio</span><i>×</i><span>Luau</span><i>×</i><span>Gameplay systems</span></div>
         </div>
         <div className="hero-art" aria-hidden="true">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
           <div className="code-card">
-            <div className="code-top"><span /><span /><span /><small>Admission.luau</small></div>
+            <div className="code-top"><span /><span /><span /><small>ServerRuntime.luau</small></div>
             <div className="code-lines">
-              <p><b>01</b><span className="purple">local</span> <span className="blue">Result</span> = <span className="yellow">require</span>(...)</p>
+              <p><b>01</b><span className="purple">local</span> <span className="blue">System</span> = {`{}`}</p>
               <p><b>02</b></p>
-              <p><b>03</b><span className="purple">function</span> <span className="yellow">Admission</span><span className="blue">.Validate</span>(input)</p>
-              <p><b>04</b>&nbsp;&nbsp;<span className="purple">if</span> <span className="blue">not</span> valid(input) <span className="purple">then</span></p>
-              <p><b>05</b>&nbsp;&nbsp;&nbsp;&nbsp;<span className="purple">return</span> Result.Fail(<span className="orange">&quot;Rejected&quot;</span>)</p>
-              <p><b>06</b>&nbsp;&nbsp;<span className="purple">end</span></p>
-              <p><b>07</b>&nbsp;&nbsp;<span className="purple">return</span> Result.Ok(nextState)</p>
-              <p><b>08</b><span className="purple">end</span></p>
-              <p><b>09</b></p>
-              <p><b>10</b><span className="purple">return</span> <span className="blue">table.freeze</span>(Admission)</p>
+              <p><b>03</b><span className="purple">function</span> <span className="yellow">System</span><span className="blue">:Start()</span></p>
+              <p><b>04</b>&nbsp;&nbsp;<span className="green">-- gameplay, owned clearly</span></p>
+              <p><b>05</b>&nbsp;&nbsp;<span className="blue">self</span>.Ready = <span className="orange">true</span></p>
+              <p><b>06</b><span className="purple">end</span></p>
+              <p><b>07</b></p>
+              <p><b>08</b><span className="purple">return</span> System</p>
             </div>
           </div>
-          <div className="floating-note note-top"><span>✦</span> Built for real edge cases</div>
-          <div className="floating-note note-bottom">typed · modular · lifecycle-aware <span>↗</span></div>
+          <div className="floating-note note-top"><span>✦</span> Built in Studio</div>
+          <div className="floating-note note-bottom">typed · modular · player-focused <span>↗</span></div>
         </div>
       </section>
 
       <section className="ticker" aria-label="Specialties">
         <div className="ticker-track">
-          <span>GAMEPLAY SYSTEMS</span><i>✦</i><span>ROBLOX STUDIO</span><i>✦</i><span>LUAU</span><i>✦</i><span>NETWORK BOUNDARIES</span><i>✦</i><span>GAMEPLAY SYSTEMS</span><i>✦</i><span>ROBLOX STUDIO</span>
+          <span>GAMEPLAY SCRIPTING</span><i>✦</i><span>ROBLOX STUDIO</span><i>✦</i><span>LUAU</span><i>✦</i><span>GAME SYSTEMS</span><i>✦</i><span>GAMEPLAY SCRIPTING</span><i>✦</i><span>ROBLOX STUDIO</span>
         </div>
       </section>
 
@@ -204,9 +157,9 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h2>Systems with a reason<br />behind <em>every boundary.</em></h2>
+            <h2>A few of the projects<br />I&apos;ve been <em>building.</em></h2>
           </div>
-          <p className="section-intro">These are not generic “features.” They are the real problem spaces I keep returning to: authority, state, composition, persistence, and the player-facing result.</p>
+          <p className="section-intro">A snapshot of my current Roblox development work and the areas where I contribute most.</p>
         </div>
 
         <div className="projects">
@@ -215,50 +168,29 @@ export default function Home() {
               <div className="project-visual" aria-hidden="true">
                 <span className="project-number">{project.number}</span>
                 <div className="visual-shape" />
-                <span className="visual-label">{project.accent === 'orange' ? 'ADMIT / MUTATE / PRESENT' : project.accent === 'blue' ? 'INTENT / AUTHORITY / SNAPSHOT' : 'CONTRACT / FIXTURE / LIFECYCLE'}</span>
+                <span className="visual-label">{project.accent === 'orange' ? 'BUILD / PLAY / IMPROVE' : project.accent === 'blue' ? 'REWRITE / EXTEND / SHIP' : 'PLAN / SCRIPT / MAINTAIN'}</span>
               </div>
               <div className="project-body">
                 <p className="project-kicker">{project.kicker}</p>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-                <ul className="project-examples">{project.examples.map((example) => <li key={example}>{example}</li>)}</ul>
+                <div className="project-work"><span>My contribution</span><p>{project.work}</p></div>
                 <div className="project-footer"><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><small>{project.status}</small></div>
               </div>
             </article>
           ))}
         </div>
-        <p className="evidence-note"><span>Evidence note</span> The examples on this page come from source modules, architectural seams, and focused fixtures. Runtime, provider, visual, and multiplayer status varies by project and is labelled where relevant.</p>
+        <p className="evidence-note"><span>Portfolio note</span> Project details describe ongoing development work. Demos and screenshots will be added as they are ready.</p>
       </section>
 
-      <section className="section examples-section shell" id="examples">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Examples, not buzzwords</p>
-            <h2>Here&apos;s what that<br /><em>looks like in code.</em></h2>
-          </div>
-          <p className="section-intro">A closer look at the kinds of decisions I make when a system has to survive bad input, stale state, failed writes, and teardown.</p>
-        </div>
-        <div className="example-grid">
-          {examples.map((example) => (
-            <article className={`example-card ${example.accent}`} key={example.number}>
-              <div className="example-top"><span>{example.number}</span><small>{example.status}</small></div>
-              <h3>{example.title}</h3>
-              <code>{example.path}</code>
-              <p>{example.description}</p>
-              <strong>{example.result}</strong>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="principles-band" id="approach">
+      <section className="principles-band" id="about">
         <div className="section shell">
           <div className="section-heading light-heading">
             <div>
-              <p className="eyebrow">How I work</p>
-              <h2>Good code is part of<br /><em>the experience.</em></h2>
+              <p className="eyebrow">About my work</p>
+              <h2>Technical enough for the system.<br /><em>Clear enough for the team.</em></h2>
             </div>
-            <p className="section-intro">The strongest Roblox projects feel simple to players because the engineering underneath is intentional, bounded, and honest about failure.</p>
+            <p className="section-intro">I enjoy taking a rough feature idea, turning it into a working Roblox system, and leaving it in a state that can keep growing.</p>
           </div>
           <div className="principles">
             {principles.map(([number, title, description]) => (
@@ -272,46 +204,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section shell toolkit" id="skills">
+        <div className="toolkit-copy">
+          <p className="eyebrow">What I can help with</p>
+          <h2>Useful systems.<br /><em>Better experiences.</em></h2>
+          <p>Whether you need a feature built, an existing system cleaned up, or help making a project easier to continue, I work comfortably across gameplay and technical foundations.</p>
+        </div>
+        <div className="tool-list">
+          {capabilities.map((capability) => <div key={capability.number}><span>{capability.number}</span><strong>{capability.title}</strong><small>{capability.description}</small></div>)}
+        </div>
+      </section>
+
       <section className="section shell video-section" id="videos">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">In motion</p>
-            <h2>Let the work<br /><em>speak for itself.</em></h2>
+            <p className="eyebrow">Demos</p>
+            <h2>See the work<br /><em>in motion.</em></h2>
           </div>
-          <p className="section-intro">A good demo should show both sides: what the player feels and the system decision that makes that moment reliable.</p>
+          <p className="section-intro">Gameplay clips and short walkthroughs will live here as the projects are ready to show.</p>
         </div>
         <div className="videos">{videos.map((video) => <VideoCard key={video.number} video={video} />)}</div>
-        <p className="video-note">For a no-cost setup, upload clips to YouTube as Unlisted and paste the embed URL into this section. Local files can live in <code>public/videos</code>. Edit the <code>videos</code> array in <code>app/page.tsx</code>.</p>
-      </section>
-
-      <section className="section shell toolkit">
-        <div className="toolkit-copy">
-          <p className="eyebrow">The toolkit</p>
-          <h2>From first sketch<br />to <em>failure-proof loop.</em></h2>
-          <p>I care about the full loop: shaping the idea, naming the owner, building the system, testing the edge cases, and making the final interaction feel effortless.</p>
-        </div>
-        <div className="tool-list">
-          <div><span>01</span><strong>Luau & Roblox Studio</strong><small>Strict modules, services, gameplay, UI, authored world integration</small></div>
-          <div><span>02</span><strong>Contracts & networking</strong><small>Typed inputs, admission boundaries, corrections, replication, correlation</small></div>
-          <div><span>03</span><strong>Lifecycle & ownership</strong><small>Construction, active state, cancellation, player removal, idempotent destroy</small></div>
-          <div><span>04</span><strong>Fixtures & audits</strong><small>Hostile input, replay, capacity, rollback, persistence, recovery, evidence limits</small></div>
-        </div>
+        <p className="video-note">To add a demo, edit the <code>videos</code> array in <code>app/page.tsx</code>. You can use an Unlisted YouTube video or a local file in <code>public/videos</code>.</p>
       </section>
 
       <section className="contact shell" id="contact">
         <div className="contact-inner">
-          <p className="eyebrow">Start a conversation</p>
-          <h2>Have a system<br />worth <em>building?</em></h2>
-          <p>Tell me what you&apos;re making, what needs solving, or where you want an extra pair of hands on the scripting and systems side.</p>
-          <div className="contact-actions"><a className="button button-light" href="https://github.com/S-ntineDevelopment" target="_blank" rel="noreferrer">View my GitHub <span>↗</span></a><a className="contact-link" href="https://github.com/S-ntineDevelopment/S-ntineDevelopment.github.io" target="_blank" rel="noreferrer">Inspect this portfolio&apos;s source <span>↗</span></a></div>
-          <span className="contact-hint">Replace the GitHub action with your Discord or email when you are ready to take commissions.</span>
+          <p className="eyebrow">Get in touch</p>
+          <h2>Have a Roblox project<br />you want to <em>improve?</em></h2>
+          <p>I&apos;m interested in gameplay scripting, systems work, and helping Roblox projects become more reliable and enjoyable to play.</p>
+          <div className="contact-actions"><a className="button button-light" href="https://github.com/S-ntineDevelopment" target="_blank" rel="noreferrer">View my GitHub <span>↗</span></a><a className="contact-link" href="https://github.com/S-ntineDevelopment/S-ntineDevelopment.github.io" target="_blank" rel="noreferrer">View portfolio source <span>↗</span></a></div>
+          <span className="contact-hint">Replace the GitHub link with your Discord or email when you are ready.</span>
         </div>
         <div className="contact-stamp" aria-hidden="true">ROBLOX<br />LUAU<br /><span>✦</span></div>
       </section>
 
       <footer className="footer shell">
         <span>© 2026 S_ntinel</span>
-        <span>Built with intention · Made for Roblox</span>
+        <span>Roblox Studio · Luau developer</span>
         <a href="#top">Back to top ↑</a>
       </footer>
     </main>
