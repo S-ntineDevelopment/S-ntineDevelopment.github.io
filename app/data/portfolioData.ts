@@ -3,6 +3,7 @@ export type UIStyleId =
   | 'idle'
   | 'squishie'
   | 'bleach'
+  | 'raq'
   | 'adn';
 
 export type UIStyleCategory = {
@@ -124,6 +125,14 @@ export const uiStyleCategories: UIStyleCategory[] = [
     tagline:
       'Complete finished Requiem: Shattered Souls suite — Shop, Inventory, Skills, Stats, Quests, Map, Main Menu, Trade, Party, Profile, Combat HUD & Settings.',
     bestFor: 'Anime battlegrounds, Bleach/Shonen RPGs, action combat experiences',
+  },
+  {
+    id: 'raq',
+    label: 'Project Raq / Infamy',
+    shortLabel: 'PROJECT RAQ',
+    tagline:
+      'Complete open-world urban RP suite: Dealership, Garage, Mod Shop, Safehouse Floorplanner, Stores, Wardrobe, Barber, Bank, Smartphone, Crews, Perks & Mobile Touch HUDs.',
+    bestFor: 'Open-world RP, urban crime games, vehicle sims & social progression',
   },
   {
     id: 'adn',
@@ -632,7 +641,136 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     image: '/portfolio/bleach-settings.webp',
   },
 
-  // --- AD&N TRAIN SYSTEM (7 Finished RoUI Screens) ---
+  // --- PROJECT RAQ / INFAMY (6 Complete 6-Up Suite Boards = 36 Screens) ---
+  {
+    id: 'raq-vehicles-property',
+    title: 'Project Raq — Dealership, Garage, Mod Shop, Safehouse & Map (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Suite Board',
+    summary:
+      'Open-world vehicle & property loop: Mirror Motors dealership, garage condition/fuel roster, LS Customs mod shop with HSV paint wheel, top-down safehouse floorplanner, city map, and universal NPC dialogue.',
+    deliverables: ['6 Cohesive Screens', 'HSV Mod Shop', 'Safehouse Floorplanner'],
+    image: '/portfolio/raq-vehicles-property.webp',
+    featured: true,
+  },
+  {
+    id: 'raq-stores-services',
+    title: 'Project Raq — General Store, Streetwear, Wardrobe, Barber & Bank (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Commerce Board',
+    summary:
+      'Complete urban commerce loop: basket-enabled general store, live-3D streetwear & jewellery shop, outfit wardrobe, barber customizer, checkout/bank terminal, and Robux cash store.',
+    deliverables: ['6 Commerce Screens', 'Checkout Baskets', 'Banking & Barber UI'],
+    image: '/portfolio/raq-stores-services.webp',
+    featured: true,
+  },
+  {
+    id: 'raq-phone-crews',
+    title: 'Project Raq — Smartphone, Crews, Emblem Builder, Perks & Profile (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Social Board',
+    summary:
+      'Social and progression suite featuring an iOS-style smartphone with live calls, crew roster, custom crew emblem/color builder, physical/combat/survival perks, leaderboards, and character profile.',
+    deliverables: ['6 Social Screens', 'Crew Emblem Builder', 'Smartphone & Perks'],
+    image: '/portfolio/raq-phone-crews.webp',
+    featured: true,
+  },
+  {
+    id: 'raq-gameplay-hud',
+    title: 'Project Raq — On-Foot, Vehicle, Combat, Prompts & Mobile Touch HUD (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Gameplay HUD',
+    summary:
+      'Complete gameplay HUD system covering on-foot minimap & hotbar, vehicle speedometer + radio, fire-mode ammo counter, contextual warnings/prompts, world nametags, and mobile touch controls.',
+    deliverables: ['6 Gameplay HUDs', 'Mobile Touch Controls', 'Combat Fire Modes'],
+    image: '/portfolio/raq-gameplay-hud.webp',
+    featured: true,
+  },
+  {
+    id: 'raq-inventory-production',
+    title: 'Project Raq — Inventory, Stashes & Production Systems (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Systems Board',
+    summary:
+      'Deep inventory, weight management, storage stashes, and production loop interfaces built for high-retention open-world RP.',
+    deliverables: ['6 Inventory Screens', 'Storage & Crafting', 'Dark-Gold Theme'],
+    image: '/portfolio/raq-inventory-production.webp',
+  },
+  {
+    id: 'raq-entry-settings',
+    title: 'Project Raq — Entry, Spawn Selection & Settings Suite (6 Screens)',
+    styleId: 'raq',
+    styleLabel: 'Project Raq / Infamy',
+    project: 'Project Raq / Infamy',
+    screenType: '6-Screen Onboarding Board',
+    summary:
+      'Polished game entry flow covering main menu, spawn district picker, character slots, keybinds, audio/graphics settings, and patch notes.',
+    deliverables: ['6 Onboarding Screens', 'Spawn Picker', 'Settings & Keybinds'],
+    image: '/portfolio/raq-entry-settings.webp',
+  },
+
+  // --- AD&N TRAIN SYSTEM (Newest Crisp Screens + 5 Live Animated Motion Clips) ---
+  {
+    id: 'adn-train-workshop',
+    title: 'Locomotive Paint & Haul Workshop (Live HSV Customizer)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Finished Industrial UI',
+    summary:
+      'Precision rolling-stock workshop with 3D viewport camera controls, interactive HSV color wheel, live RGB/HEX inputs, current vs. draft swatches, and physical haul selection.',
+    deliverables: ['HSV Color Wheel', '3D Viewport Controls', 'Studio Ready'],
+    image: '/portfolio/adn-train-workshop.webp',
+    featured: true,
+  },
+  {
+    id: 'adn-operations-new',
+    title: 'Railway Operations — Switch List, Waybills & Contracts',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Finished Industrial UI',
+    summary:
+      'Tabbed dispatch terminal tracking switch lists, waybills, numbered delivery steps, crew role eligibility, and credit/XP rewards.',
+    deliverables: ['Tabbed Dispatch UI', 'Step Tracker', 'Requirement Badges'],
+    image: '/portfolio/adn-operations-new.webp',
+    featured: true,
+  },
+  {
+    id: 'adn-exchange-new',
+    title: 'Railway Freight Exchange — Commodity Market',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Finished Industrial UI',
+    summary:
+      'Emerald-on-carbon logistics terminal for buying and selling freight lots with supplier stock tables, quantity steppers, and live balance preview.',
+    deliverables: ['Commodity Market', 'Order Calculator', 'Clean CAD UI'],
+    image: '/portfolio/adn-exchange-new.webp',
+    featured: true,
+  },
+  {
+    id: 'adn-hud-new',
+    title: 'Operations HUD — Toasts, Quick Dock & Rerailing Guide',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Finished Industrial HUD',
+    summary:
+      'Unobtrusive corner HUD combining active waybill counts, toast notifications, quick-action dock, and a 4-step interactive rerailing guide.',
+    deliverables: ['Notification Stack', 'Quick Dock', 'Contextual Guide'],
+    image: '/portfolio/adn-hud-new.webp',
+  },
   {
     id: 'adn-dispatcher',
     title: 'CTC Dispatcher — Live Track Layout & Signal Control',
@@ -644,80 +782,6 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
       'Real-time railway dispatcher board displaying yard occupancy, switch SW-12 alignment, signal S-04 aspects, and route requests.',
     deliverables: ['Live Schematic', 'Signal & Switch Control', 'Route Queue'],
     image: '/portfolio/adn-dispatcher.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-operations',
-    title: 'Operations — Switch Lists, Waybills & Contracts',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Freight operations interface tracking active switching orders, car destinations, and contract payouts.',
-    deliverables: ['Waybill Flow', 'Switch Lists', 'RoUI Compiled'],
-    image: '/portfolio/adn-operations.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-industry',
-    title: 'Industry Overview — Supply & Freight Demand',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Map-linked industry overview showing active cargo supply, siding capacity, and commodity demand.',
-    deliverables: ['Supply Telemetry', 'Siding Status', 'Clean CAD UI'],
-    image: '/portfolio/adn-industry.webp',
-  },
-  {
-    id: 'adn-consist-setup',
-    title: 'Consist Features & Rolling Stock Setup',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Train consist builder for configuring locomotives, wagons, braking specs, and operational features.',
-    deliverables: ['Consist Builder', 'Spec Readouts', 'RoUI Compiled'],
-    image: '/portfolio/adn-consist-setup.webp',
-  },
-  {
-    id: 'adn-loco-store',
-    title: 'Locomotive Store & Fleet Catalogue',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Rolling-stock dealership displaying locomotive classes, tractive stats, and purchase/unlock states.',
-    deliverables: ['Fleet Catalogue', 'Stat Bars', 'Unlock States'],
-    image: '/portfolio/adn-loco-store.webp',
-  },
-  {
-    id: 'adn-turntable',
-    title: 'Turntable Control — Interactive Alignment UI',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Precision turntable rotation and track-alignment controller for yard operations.',
-    deliverables: ['Interactive Controls', 'Track Alignment', 'Clean CAD'],
-    image: '/portfolio/adn-turntable.webp',
-  },
-  {
-    id: 'adn-settings',
-    title: 'AD&N Settings — Controls & Keybindings',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Full simulation settings suite covering controls, graphics, audio, world labels, and accessibility.',
-    deliverables: ['6 Settings Tabs', 'Input Binding', 'RoUI Compiled'],
-    image: '/portfolio/adn-settings.webp',
   },
   {
     id: 'adn-entry-sequence',
@@ -784,16 +848,16 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
 
 export const marqueeHighlights = uiShowcaseItems.filter((item) =>
   [
+    'raq-vehicles-property',
     'ic-black-market-real',
-    'sas-inventory',
+    'sas-inventory-motion',
     'bleach-shop',
-    'adn-dispatcher',
-    'ic-marketplace-desktop',
+    'adn-train-workshop',
+    'raq-stores-services',
     'sas-hud-native',
     'bleach-skills',
-    'adn-operations',
-    'sas-crates',
-    'bleach-inventory',
+    'adn-operations-new',
+    'raq-phone-crews',
   ].includes(item.id)
 );
 
@@ -938,7 +1002,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Dual-prong tether physics, server-authoritative stun tags, cooldowns, and clean state recovery.',
     src: '/videos/taser-probe-demo.mp4',
-    poster: '/portfolio/adn-operations.webp',
+    poster: '/portfolio/adn-operations-new.webp',
     specs: 'ROBLOX STUDIO · RP TOOLS',
   },
   {
@@ -949,7 +1013,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Server-validated proximity stun discharge, animation sync, and per-player keyed debounces.',
     src: '/videos/dry-stun-taser-demo.mp4',
-    poster: '/portfolio/adn-industry.webp',
+    poster: '/portfolio/adn-exchange-new.webp',
     specs: 'ROBLOX STUDIO · COMBAT TOOLS',
   },
   {
@@ -979,18 +1043,17 @@ export const showcaseVideos: ShowcaseVideo[] = [
 export const proprietaryTools: ProprietaryTool[] = [
   {
     id: 'roui',
-    badge: 'PERSONAL UI ENGINE',
-    name: 'RoUI Studio',
-    tagline: 'Local Roblox UI engine, compiler & runtime.',
+    badge: 'BUILT BY S_NTINEL · PERSONAL ROBLOX UI ENGINE',
+    name: 'RoUI Studio — Built Specifically for Roblox UI',
+    tagline: 'Why I created my own local UI engine instead of stopping at Figma.',
     description:
-      'Built to eliminate messy PNG dumps and broken mobile scaling. Compiles measured UI directly into clean Roblox ScreenGui hierarchies, slices whole-state spritesheets, audits PC vs. Mobile TouchGui safe zones, and ships with a modular ClientAnimations.luau + UIConfig.luau runtime.',
+      'Figma and Photoshop were never built for Roblox: they don\'t understand UDim2 Scale/Offset, AnchorPoint geometry, TouchGui thumbstick safe zones, ImageRectOffset spritesheets, or Roblox font bounds. That\'s why most UI designers hand you flat PNGs that break on mobile and cost extra to import. I built RoUI from scratch specifically to solve this—a local Figma-compatible Roblox UI engine that authors, audits, slices, and compiles directly into clean native Roblox ScreenGuis with a modular Luau runtime.',
     highlights: [
-      'Dual-viewport PC 1080p vs Mobile TouchGui safe-zone audits',
-      '9-state button contact sheets with stationary hitboxes',
-      'Zero-drift .rbxmx export & centralized Luau UI runtime',
+      'Direct native .rbxmx ScreenGui compilation with zero-drift Scale/AnchorPoint geometry',
+      'Automated dual-viewport verification (Desktop 1080p vs Mobile TouchGui safe zones & 44px tap targets)',
+      'Lossless whole-state spritesheet slicing & fixed-pivot flipbook packing (zero blurry flat tweens)',
+      'Native Roblox font/TextBounds reconciliation + centralized ClientAnimations.luau & UIConfig.luau runtime',
     ],
-    image: '/portfolio/tool-dual-viewport.webp',
-    imageAlt: 'RoUI Studio dual-viewport responsive audit comparing Desktop 1080p and Mobile Landscape TouchGui safe zones',
   },
   {
     id: 'sngine',

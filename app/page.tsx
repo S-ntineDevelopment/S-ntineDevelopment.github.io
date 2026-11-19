@@ -59,15 +59,19 @@ export default function Home() {
           </div>
 
           <h1 className="hero-title">
-            Commercial Roblox UI &amp; systems <em>built to ship.</em>
+            Roblox UI Design &amp; <em>Luau Development.</em>
           </h1>
 
           <p className="hero-subtitle">
-            I design full-game Roblox UI suites across <strong>8+ visual styles</strong>, compile
-            them natively into Studio through my personal <strong>RoUI</strong> engine (PC · Mobile
-            · Console verified), and power them with my private <strong>S_ngine</strong> &amp;{' '}
-            <strong>Luau</strong> gameplay architecture—no raw PNG dumps, no extra Studio import
-            fees.
+            I design and build ready-to-use Roblox interfaces and gameplay systems. Send over your
+            references or target direction and I&apos;ll put together custom mockups tailored to
+            your game, never copy-pasted templates, then deliver them natively in Roblox Studio.
+          </p>
+
+          <p className="hero-note">
+            <strong>Portfolio note:</strong> Because AI tools are increasingly used to clone public
+            portfolios, this site only displays a selective sample of my work rather than my full
+            capacity across UI and scripting. Additional examples are shared privately on inquiry.
           </p>
 
           <div className="hero-ctas">

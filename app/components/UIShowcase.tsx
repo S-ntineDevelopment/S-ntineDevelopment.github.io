@@ -25,6 +25,7 @@ export default function UIShowcase() {
       idle: [],
       squishie: [],
       bleach: [],
+      raq: [],
       adn: [],
     };
     for (const item of uiShowcaseItems) {
