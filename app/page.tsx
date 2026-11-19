@@ -70,8 +70,10 @@ export default function Home() {
 
           <p className="hero-note">
             <strong>Portfolio note:</strong> Because AI tools are increasingly used to clone public
-            portfolios, this site only displays a selective sample of my work rather than my full
-            capacity across UI and scripting. Additional examples are shared privately on inquiry.
+            portfolios—and I&apos;ve had people copy my work directly through Discord and DMs—this
+            site only displays a selective sample rather than my full capacity across UI and
+            scripting. Instead of sending out private archives, I&apos;ll create custom mockups on
+            request to fit what you&apos;re looking for based on your references.
           </p>
 
           <div className="hero-ctas">
@@ -331,9 +333,10 @@ export default function Home() {
           <div className="curation-notice">
             <span className="notice-tag">SELECTIVE CODE SHOWCASE</span>
             <p>
-              To protect client IP and prevent AI scraping of private production codebases, only
+              To protect client IP and prevent AI scraping or code theft over Discord and DMs, only
               high-level architecture breakdowns and representative snippets are published here—not
-              the full repositories. Private walkthroughs and live tests are available on inquiry.
+              full repositories. Instead of sharing private source files, we scope your exact
+              mechanics and build them cleanly for your project.
             </p>
           </div>
 

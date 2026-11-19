@@ -1,10 +1,4 @@
-export type UIStyleId =
-  | 'all'
-  | 'idle'
-  | 'squishie'
-  | 'bleach'
-  | 'raq'
-  | 'adn';
+export type UIStyleId = 'all' | 'brainrot' | 'idle';
 
 export type UIStyleCategory = {
   id: UIStyleId;
@@ -99,8 +93,16 @@ export const uiStyleCategories: UIStyleCategory[] = [
     label: 'All Finished Work',
     shortLabel: 'ALL',
     tagline:
-      '49 finished, Studio-compiled UI screens across Idle Cartel, Steal A Squishie, Requiem (Bleach RPG), AD&N Train System, and RoUI audits.',
+      '23 finished, Studio-compiled UI screens across Brainrot Style and Idle Cartel—zero mockups, zero prototypes.',
     bestFor: 'Full-game UI suites, turnkey Luau integration, and cross-device scaling',
+  },
+  {
+    id: 'brainrot',
+    label: 'Brainrot Style',
+    shortLabel: 'BRAINROT STYLE',
+    tagline:
+      'Finished front-page simulator & brainrot UI compiled in RoUI: Inventory, Crates, Reveal, Daily Rewards, Trolls Shop, Catch Minigame, Events, Traps & Native HUD.',
+    bestFor: 'Brainrot games, collectible simulators, gacha/unboxing & Robux storefronts',
   },
   {
     id: 'idle',
@@ -108,39 +110,7 @@ export const uiStyleCategories: UIStyleCategory[] = [
     shortLabel: 'IDLE CARTEL',
     tagline:
       'Finished Black Market P2P marketplace, buy/confirm/receipt flows, Soldados gear & training, and desktop/console/tablet/phone responsive views.',
-    bestFor: 'Tycoons, empire builders, player-to-player economies & strategy games',
-  },
-  {
-    id: 'squishie',
-    label: 'Steal A Squishie',
-    shortLabel: 'SQUISHIE',
-    tagline:
-      'Finished front-page simulator UI compiled in RoUI: Inventory, Crates, Reveal, Daily Rewards, Trolls Shop, Catch Minigame, Events, Traps & Native HUD.',
-    bestFor: 'Collectible simulators, gacha/unboxing, high-conversion Robux storefronts',
-  },
-  {
-    id: 'bleach',
-    label: 'Bleach / Requiem RPG',
-    shortLabel: 'ANIME RPG',
-    tagline:
-      'Complete finished Requiem: Shattered Souls suite — Shop, Inventory, Skills, Stats, Quests, Map, Main Menu, Trade, Party, Profile, Combat HUD & Settings.',
-    bestFor: 'Anime battlegrounds, Bleach/Shonen RPGs, action combat experiences',
-  },
-  {
-    id: 'raq',
-    label: 'Project Raq / Infamy',
-    shortLabel: 'PROJECT RAQ',
-    tagline:
-      'Complete open-world urban RP suite: Dealership, Garage, Mod Shop, Safehouse Floorplanner, Stores, Wardrobe, Barber, Bank, Smartphone, Crews, Perks & Mobile Touch HUDs.',
-    bestFor: 'Open-world RP, urban crime games, vehicle sims & social progression',
-  },
-  {
-    id: 'adn',
-    label: 'AD&N Train System',
-    shortLabel: 'AD&N TRAINS',
-    tagline:
-      'Finished industrial railway UIs & live animated mechanical press/entry motion: CTC Dispatcher, Operations, Industry, Consist, Locomotive Store & Loading.',
-    bestFor: 'Train sims, logistics, industrial CAD interfaces & mechanical simulation',
+    bestFor: 'Crime tycoons, empire builders, player-to-player economies & strategy games',
   },
 ];
 
@@ -268,62 +238,13 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     deliverables: ['Training Queue', 'Mobile First', 'Progress Bars'],
     image: '/portfolio/ic-soldados-training.webp',
   },
-  {
-    id: 'ic-store-offer',
-    title: 'Syndicate Store — Monetization Offer',
-    styleId: 'idle',
-    styleLabel: 'Idle Cartel',
-    project: 'Idle Cartel',
-    screenType: 'Robux Storefront',
-    summary:
-      'High-contrast promotional offer layout engineered for clean Robux bundle conversion.',
-    deliverables: ['Monetization UI', 'Bundle Cards', 'Studio Ready'],
-    image: '/portfolio/ic-store-offer.webp',
-  },
-  {
-    id: 'ic-collect-motion',
-    title: 'Cash Collection — Animated Flipbook FX (GIF)',
-    styleId: 'idle',
-    styleLabel: 'Idle Cartel',
-    project: 'Idle Cartel',
-    screenType: 'Live Animated GIF',
-    summary:
-      '24-frame packed sprite cadence powering tactile cash collection feedback without procedural tween blur.',
-    deliverables: ['Live Motion GIF', '24-Frame Atlas', 'Zero Tween Blur'],
-    image: '/portfolio/ic-collect-motion.gif',
-    featured: true,
-  },
-  {
-    id: 'ic-fight-strike',
-    title: 'Combat Crossed Strike — Animated FX (GIF)',
-    styleId: 'idle',
-    styleLabel: 'Idle Cartel',
-    project: 'Idle Cartel',
-    screenType: 'Live Animated GIF',
-    summary:
-      'Fixed-pivot 2D combat strike impact sequence authored for responsive fight resolution.',
-    deliverables: ['Live Motion GIF', 'Fixed-Pivot FX', 'Combat UI'],
-    image: '/portfolio/ic-fight-strike.gif',
-  },
-  {
-    id: 'ic-fight-weapon',
-    title: 'Weapon Combat Motion — Animated Sequence (GIF)',
-    styleId: 'idle',
-    styleLabel: 'Idle Cartel',
-    project: 'Idle Cartel',
-    screenType: 'Live Animated GIF',
-    summary:
-      'Animated weapon motion playback used inside Idle Cartel encounter modals.',
-    deliverables: ['Live Motion GIF', 'Encounter UI', 'Lossless Atlas'],
-    image: '/portfolio/ic-fight-weapon.gif',
-  },
 
-  // --- STEAL A SQUISHIE (12 Finished Screens) ---
+  // --- BRAINROT STYLE (13 Finished Screens) ---
   {
     id: 'sas-inventory-motion',
     title: 'Inventory — Approved Live Motion Sequence (Animated WebP)',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Live Animated WebP',
     summary:
@@ -335,8 +256,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-inventory',
     title: 'Inventory — Rarity Grid, Routing & Bulk Sell',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -348,8 +269,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-hud-native',
     title: 'Gameplay HUD — Native Roblox Build (r127)',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Native Studio HUD',
     summary:
@@ -361,8 +282,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-crates',
     title: 'Crate Store & Odds Inspector',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -374,8 +295,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-crate-reveal',
     title: 'Crate Opening — Rarity Reveal Screen',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished Reveal UI',
     summary:
@@ -386,8 +307,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-daily',
     title: 'Daily Rewards — 7-Day Streak Modal',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -398,8 +319,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-menus',
     title: 'Pets, Store & System Menus Suite',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -410,8 +331,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-trolls-shop',
     title: 'Trolls Shop — Robux Chaos Store',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -422,8 +343,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-catch-minigame',
     title: 'Tap-to-Catch Minigame & State Feedback',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Finished RoUI Build',
     summary:
@@ -434,8 +355,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-events',
     title: 'Live Events Overview Panel',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Live-Ops UI',
     summary:
@@ -446,8 +367,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-traps',
     title: 'Base Traps & Defense Shop',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Gameplay Shop UI',
     summary:
@@ -458,8 +379,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-crate-pools',
     title: 'Crate Pools & Collection Index',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Collection Completion UI',
     summary:
@@ -470,8 +391,8 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
   {
     id: 'sas-wallet-burst',
     title: 'Wallet & Currency Burst HUD',
-    styleId: 'squishie',
-    styleLabel: 'Steal A Squishie',
+    styleId: 'brainrot',
+    styleLabel: 'Brainrot Style',
     project: 'Steal A Squishie',
     screenType: 'Currency Feedback UI',
     summary:
@@ -480,384 +401,20 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     image: '/portfolio/sas-wallet-burst.webp',
   },
 
-  // --- BLEACH / REQUIEM: SHATTERED SOULS (13 Finished Screens) ---
-  {
-    id: 'bleach-shop',
-    title: 'Requiem — Metallic Crimson Shop',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Ornate silver-and-crimson framed shop with sidebar navigation, category tabs, item inspector, and console hotbar glyphs.',
-    deliverables: ['Console LB/RB/A/B', 'Custom Metallic Frame', '8-Slot Hotbar'],
-    image: '/portfolio/bleach-shop.webp',
-    featured: true,
-  },
-  {
-    id: 'bleach-inventory',
-    title: 'Requiem — Inventory & Item Inspector',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Full RPG inventory featuring category filters, search/sort controls, item rarity inspector, and Equip/Use/Drop/Sell actions.',
-    deliverables: ['Category Rail', 'Search & Sort', 'Action Buttons'],
-    image: '/portfolio/bleach-inventory.webp',
-    featured: true,
-  },
-  {
-    id: 'bleach-skills',
-    title: 'Requiem — Branching Skill Tree (Hakuda / Sword / Kido)',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Multi-tree progression graph with prerequisite connectors, rank inspector, upgrade CTA, and direct hotbar assignment.',
-    deliverables: ['8 Skill Trees', 'Prerequisite Graph', 'Hotbar Binding'],
-    image: '/portfolio/bleach-skills.webp',
-    featured: true,
-  },
-  {
-    id: 'bleach-stats',
-    title: 'Requiem — Character Stats & Allocation',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Clean stat allocation and derived combat telemetry built to match the unified Requiem chrome.',
-    deliverables: ['Stat Allocation', 'Derived Metrics', 'Unified Chrome'],
-    image: '/portfolio/bleach-stats.webp',
-  },
-  {
-    id: 'bleach-quests',
-    title: 'Requiem — Quests & Objectives Tracker',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Active and completed quest journal with objective breakdowns, reward previews, and tracking toggles.',
-    deliverables: ['Quest Journal', 'Reward Previews', 'Console Ready'],
-    image: '/portfolio/bleach-quests.webp',
-  },
-  {
-    id: 'bleach-map',
-    title: 'Requiem — World Map & Fast Travel',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Multi-realm map interface supporting Soul Society, Hueco Mundo, and Quincy zone navigation.',
-    deliverables: ['Multi-Realm Map', 'Zone Markers', 'Clean Legend'],
-    image: '/portfolio/bleach-map.webp',
-  },
-  {
-    id: 'bleach-main-menu',
-    title: 'Requiem — Main Menu & Play Flow',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Atmospheric anime title screen with slot selection, server browser access, and clean typography.',
-    deliverables: ['Title Screen', 'Slot Selection', 'Atmospheric Frame'],
-    image: '/portfolio/bleach-main-menu.webp',
-  },
-  {
-    id: 'bleach-trade',
-    title: 'Requiem — Player-to-Player Trade',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Dual-offer trade window with lock/ready states and anti-scam confirmation countdown.',
-    deliverables: ['Dual-Offer Grid', 'Ready Lock States', 'Scam Guard'],
-    image: '/portfolio/bleach-trade.webp',
-  },
-  {
-    id: 'bleach-party',
-    title: 'Requiem — Party & Squad Roster',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Squad management screen for inviting allies, inspecting member roles, and managing party leadership.',
-    deliverables: ['Squad Roster', 'Invite Flow', 'Role Badges'],
-    image: '/portfolio/bleach-party.webp',
-  },
-  {
-    id: 'bleach-profile',
-    title: 'Requiem — Player Profile & Combat Record',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Character dossier displaying faction standing, titles, clan lineage, and PvP/PvE combat records.',
-    deliverables: ['Character Dossier', 'Faction Standing', 'Clean Layout'],
-    image: '/portfolio/bleach-profile.webp',
-  },
-  {
-    id: 'bleach-hud-combat',
-    title: 'Requiem — Combat HUD & Ability Cooldowns',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'In-combat HUD displaying health/reiatsu/stamina bars, awakening meter, and ability hotbar cooldowns.',
-    deliverables: ['Combat HUD', 'Cooldown Overlays', 'Safe-Zone Clean'],
-    image: '/portfolio/bleach-hud-combat.webp',
-  },
-  {
-    id: 'bleach-merchant',
-    title: 'Requiem — NPC Merchant Storefront',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'In-world merchant UI tailored for weapons, clothing, rare drops, and training items.',
-    deliverables: ['Merchant UI', 'Currency Display', 'Inspector'],
-    image: '/portfolio/bleach-merchant.webp',
-  },
-  {
-    id: 'bleach-settings',
-    title: 'Requiem — Settings (Controls / Audio / Console)',
-    styleId: 'bleach',
-    styleLabel: 'Bleach / Requiem',
-    project: 'Requiem: Shattered Souls',
-    screenType: 'Finished Suite Screen',
-    summary:
-      'Multi-tab settings menu covering gameplay, graphics, audio, keybindings, and console controls.',
-    deliverables: ['Multi-Tab Settings', 'Keybind Remapper', 'Accessibility'],
-    image: '/portfolio/bleach-settings.webp',
-  },
-
-  // --- PROJECT RAQ / INFAMY (6 Complete 6-Up Suite Boards = 36 Screens) ---
-  {
-    id: 'raq-vehicles-property',
-    title: 'Project Raq — Dealership, Garage, Mod Shop, Safehouse & Map (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Suite Board',
-    summary:
-      'Open-world vehicle & property loop: Mirror Motors dealership, garage condition/fuel roster, LS Customs mod shop with HSV paint wheel, top-down safehouse floorplanner, city map, and universal NPC dialogue.',
-    deliverables: ['6 Cohesive Screens', 'HSV Mod Shop', 'Safehouse Floorplanner'],
-    image: '/portfolio/raq-vehicles-property.webp',
-    featured: true,
-  },
-  {
-    id: 'raq-stores-services',
-    title: 'Project Raq — General Store, Streetwear, Wardrobe, Barber & Bank (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Commerce Board',
-    summary:
-      'Complete urban commerce loop: basket-enabled general store, live-3D streetwear & jewellery shop, outfit wardrobe, barber customizer, checkout/bank terminal, and Robux cash store.',
-    deliverables: ['6 Commerce Screens', 'Checkout Baskets', 'Banking & Barber UI'],
-    image: '/portfolio/raq-stores-services.webp',
-    featured: true,
-  },
-  {
-    id: 'raq-phone-crews',
-    title: 'Project Raq — Smartphone, Crews, Emblem Builder, Perks & Profile (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Social Board',
-    summary:
-      'Social and progression suite featuring an iOS-style smartphone with live calls, crew roster, custom crew emblem/color builder, physical/combat/survival perks, leaderboards, and character profile.',
-    deliverables: ['6 Social Screens', 'Crew Emblem Builder', 'Smartphone & Perks'],
-    image: '/portfolio/raq-phone-crews.webp',
-    featured: true,
-  },
-  {
-    id: 'raq-gameplay-hud',
-    title: 'Project Raq — On-Foot, Vehicle, Combat, Prompts & Mobile Touch HUD (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Gameplay HUD',
-    summary:
-      'Complete gameplay HUD system covering on-foot minimap & hotbar, vehicle speedometer + radio, fire-mode ammo counter, contextual warnings/prompts, world nametags, and mobile touch controls.',
-    deliverables: ['6 Gameplay HUDs', 'Mobile Touch Controls', 'Combat Fire Modes'],
-    image: '/portfolio/raq-gameplay-hud.webp',
-    featured: true,
-  },
-  {
-    id: 'raq-inventory-production',
-    title: 'Project Raq — Inventory, Stashes & Production Systems (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Systems Board',
-    summary:
-      'Deep inventory, weight management, storage stashes, and production loop interfaces built for high-retention open-world RP.',
-    deliverables: ['6 Inventory Screens', 'Storage & Crafting', 'Dark-Gold Theme'],
-    image: '/portfolio/raq-inventory-production.webp',
-  },
-  {
-    id: 'raq-entry-settings',
-    title: 'Project Raq — Entry, Spawn Selection & Settings Suite (6 Screens)',
-    styleId: 'raq',
-    styleLabel: 'Project Raq / Infamy',
-    project: 'Project Raq / Infamy',
-    screenType: '6-Screen Onboarding Board',
-    summary:
-      'Polished game entry flow covering main menu, spawn district picker, character slots, keybinds, audio/graphics settings, and patch notes.',
-    deliverables: ['6 Onboarding Screens', 'Spawn Picker', 'Settings & Keybinds'],
-    image: '/portfolio/raq-entry-settings.webp',
-  },
-
-  // --- AD&N TRAIN SYSTEM (Newest Crisp Screens + 5 Live Animated Motion Clips) ---
-  {
-    id: 'adn-train-workshop',
-    title: 'Locomotive Paint & Haul Workshop (Live HSV Customizer)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished Industrial UI',
-    summary:
-      'Precision rolling-stock workshop with 3D viewport camera controls, interactive HSV color wheel, live RGB/HEX inputs, current vs. draft swatches, and physical haul selection.',
-    deliverables: ['HSV Color Wheel', '3D Viewport Controls', 'Studio Ready'],
-    image: '/portfolio/adn-train-workshop.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-operations-new',
-    title: 'Railway Operations — Switch List, Waybills & Contracts',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished Industrial UI',
-    summary:
-      'Tabbed dispatch terminal tracking switch lists, waybills, numbered delivery steps, crew role eligibility, and credit/XP rewards.',
-    deliverables: ['Tabbed Dispatch UI', 'Step Tracker', 'Requirement Badges'],
-    image: '/portfolio/adn-operations-new.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-exchange-new',
-    title: 'Railway Freight Exchange — Commodity Market',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished Industrial UI',
-    summary:
-      'Emerald-on-carbon logistics terminal for buying and selling freight lots with supplier stock tables, quantity steppers, and live balance preview.',
-    deliverables: ['Commodity Market', 'Order Calculator', 'Clean CAD UI'],
-    image: '/portfolio/adn-exchange-new.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-hud-new',
-    title: 'Operations HUD — Toasts, Quick Dock & Rerailing Guide',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished Industrial HUD',
-    summary:
-      'Unobtrusive corner HUD combining active waybill counts, toast notifications, quick-action dock, and a 4-step interactive rerailing guide.',
-    deliverables: ['Notification Stack', 'Quick Dock', 'Contextual Guide'],
-    image: '/portfolio/adn-hud-new.webp',
-  },
-  {
-    id: 'adn-dispatcher',
-    title: 'CTC Dispatcher — Live Track Layout & Signal Control',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Finished RoUI Build',
-    summary:
-      'Real-time railway dispatcher board displaying yard occupancy, switch SW-12 alignment, signal S-04 aspects, and route requests.',
-    deliverables: ['Live Schematic', 'Signal & Switch Control', 'Route Queue'],
-    image: '/portfolio/adn-dispatcher.webp',
-  },
-  {
-    id: 'adn-entry-sequence',
-    title: 'Entry & Loading Sequence — Live Motion (Animated WebP)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Live Animated WebP',
-    summary:
-      'Smooth animated railway entry and loading transition authored for seamless game startup.',
-    deliverables: ['Live Motion WebP', 'Entry Sequence', 'Brand Motion'],
-    image: '/portfolio/adn-entry-sequence.webp',
-    featured: true,
-  },
-  {
-    id: 'adn-controller-motion',
-    title: 'Locomotive Controller — Physical Button Motion (Animated WebP)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Live Animated WebP',
-    summary:
-      'Mechanical industrial pushbutton travel baked directly into whole-state spritesheets with stationary hitboxes.',
-    deliverables: ['Live Motion WebP', 'Mechanical Travel', 'Stationary Hitbox'],
-    image: '/portfolio/adn-controller-motion.webp',
-  },
-  {
-    id: 'adn-programmer-upgrades',
-    title: 'Programmer Upgrades — Physical Press States (Animated WebP)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Live Animated WebP',
-    summary:
-      'Tactile hardware-panel button press states for the locomotive decoder & upgrade programmer.',
-    deliverables: ['Live Motion WebP', 'Hardware UI', 'Whole-State Atlas'],
-    image: '/portfolio/adn-programmer-upgrades.webp',
-  },
-  {
-    id: 'adn-programmer-decoder',
-    title: 'DCC Decoder — Physical Press Interaction (Animated WebP)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Live Animated WebP',
-    summary:
-      'Interactive DCC decoder panel demonstrating crisp mechanical button feedback.',
-    deliverables: ['Live Motion WebP', 'DCC Controls', 'Zero Flat Tweens'],
-    image: '/portfolio/adn-programmer-decoder.webp',
-  },
-  {
-    id: 'adn-loading-logo',
-    title: 'AD&N Brand Loading Emblem — Animated Loop (GIF)',
-    styleId: 'adn',
-    styleLabel: 'AD&N Train System',
-    project: 'AD&N Train System',
-    screenType: 'Live Animated GIF',
-    summary:
-      'Custom animated loading emblem engineered as a looping sprite atlas for Roblox.',
-    deliverables: ['Live Motion GIF', 'Looping Atlas', 'Brand Motion'],
-    image: '/portfolio/adn-loading-logo.gif',
-  },
 ];
 
 export const marqueeHighlights = uiShowcaseItems.filter((item) =>
   [
-    'raq-vehicles-property',
-    'ic-black-market-real',
     'sas-inventory-motion',
-    'bleach-shop',
-    'adn-train-workshop',
-    'raq-stores-services',
+    'ic-black-market-real',
+    'sas-inventory',
+    'ic-marketplace-desktop',
     'sas-hud-native',
-    'bleach-skills',
-    'adn-operations-new',
-    'raq-phone-crews',
+    'sas-crates',
+    'ic-soldados-gear',
+    'sas-daily',
+    'ic-marketplace-console',
+    'sas-trolls-shop',
   ].includes(item.id)
 );
 
@@ -932,7 +489,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     id: 'vid-squishie-nine',
     number: '07',
     category: 'ANIMATED UI',
-    title: 'Steal A Squishie — All 9 Tiered Character Animations',
+    title: 'Brainrot Style — All 9 Tiered Character Animations',
     description:
       'Complete 9-character animated collectible showcase spanning Common, Rare, Epic, Legendary, Galactic, and Void tiers.',
     src: '/videos/squishie-all-nine-motion.mp4',
@@ -969,7 +526,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Simulated arc trajectories, fuse timers, bounce physics, blast radius falloff, and synced visual FX.',
     src: '/videos/grenade-physics-demo.mp4',
-    poster: '/portfolio/bleach-hud-combat.webp',
+    poster: '/portfolio/ic-soldados-gear.webp',
     specs: 'ROBLOX STUDIO · PHYSICS',
   },
   {
@@ -1002,7 +559,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Dual-prong tether physics, server-authoritative stun tags, cooldowns, and clean state recovery.',
     src: '/videos/taser-probe-demo.mp4',
-    poster: '/portfolio/adn-operations-new.webp',
+    poster: '/portfolio/ic-marketplace-shop-active.webp',
     specs: 'ROBLOX STUDIO · RP TOOLS',
   },
   {
@@ -1013,7 +570,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Server-validated proximity stun discharge, animation sync, and per-player keyed debounces.',
     src: '/videos/dry-stun-taser-demo.mp4',
-    poster: '/portfolio/adn-exchange-new.webp',
+    poster: '/portfolio/ic-marketplace-receipts.webp',
     specs: 'ROBLOX STUDIO · COMBAT TOOLS',
   },
   {
@@ -1024,7 +581,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Direct Roblox Studio gameplay recording demonstrating live client/server responsiveness and world interactions.',
     src: '/videos/studio-clip-074147.mp4',
-    poster: '/portfolio/adn-dispatcher.webp',
+    poster: '/portfolio/ic-marketplace-console.webp',
     specs: 'ROBLOX STUDIO · LIVE TEST',
   },
   {
@@ -1455,7 +1012,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: 'Why is only a curated selection shown here instead of your entire library?',
-    a: 'Because modern AI tools can clone flat layouts and public code directly from portfolio websites, this site intentionally showcases only the most relevant finished pieces—not my full UI library or private Luau repositories. Complete private suites, unwatermarked proofs, and live Studio places are shared directly upon inquiry.',
+    a: 'Because AI tools are used to clone public portfolios—and I\'ve had people copy work shared directly through Discord and DMs—this site only shows a selective sample rather than my full capacity. Instead of sending out private archives, I create custom mockups on request tailored to your references and game style.',
   },
   {
     q: 'Can I hire you strictly for Luau scripting or systems rewrites?',

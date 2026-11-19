@@ -11,7 +11,7 @@ import {
 type SuiteId = Exclude<UIStyleId, 'all'>;
 
 export default function UIShowcase() {
-  const [activeSuite, setActiveSuite] = useState<SuiteId | null>('idle');
+  const [activeSuite, setActiveSuite] = useState<SuiteId | null>('brainrot');
   const [selectedItem, setSelectedItem] = useState<UIShowcaseItem | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
 
@@ -22,11 +22,8 @@ export default function UIShowcase() {
 
   const itemsBySuite = useMemo(() => {
     const grouped: Record<SuiteId, UIShowcaseItem[]> = {
+      brainrot: [],
       idle: [],
-      squishie: [],
-      bleach: [],
-      raq: [],
-      adn: [],
     };
     for (const item of uiShowcaseItems) {
       grouped[item.styleId].push(item);
@@ -84,9 +81,10 @@ export default function UIShowcase() {
       <div className="curation-notice">
         <span className="notice-tag">CURATED SELECTION</span>
         <p>
-          Because modern AI tools can clone flat layouts directly from public portfolio pages, this
-          site intentionally showcases only the most relevant finished pieces—not my entire UI
-          library. Full private suites and live Studio places are shared directly upon inquiry.
+          Because AI tools can clone public layouts—and I&apos;ve had people copy work shared in
+          Discord and DMs—this site only displays a selective sample rather than my full UI library.
+          If you want to see how I&apos;d approach your game&apos;s direction, send your references
+          and I&apos;ll create a custom mockup on request.
         </p>
       </div>
 
