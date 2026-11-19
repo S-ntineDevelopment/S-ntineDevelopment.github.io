@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   uiShowcaseItems,
   uiStyleCategories,
@@ -8,47 +8,38 @@ import {
   type UIShowcaseItem,
 } from '../data/portfolioData';
 
-const INITIAL_ALL_LIMIT = 12;
+type SuiteId = Exclude<UIStyleId, 'all'>;
 
 export default function UIShowcase() {
-  const [activeStyle, setActiveStyle] = useState<UIStyleId>('all');
-  const [showAll, setShowAll] = useState(false);
+  const [activeSuite, setActiveSuite] = useState<SuiteId | null>('idle');
   const [selectedItem, setSelectedItem] = useState<UIShowcaseItem | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
-  const counts = useMemo(() => {
-    const map: Record<UIStyleId, number> = {
-      all: uiShowcaseItems.length,
-      idle: 0,
-      squishie: 0,
-      bleach: 0,
-      adn: 0,
-      tooling: 0,
+  const suiteCategories = useMemo(
+    () => uiStyleCategories.filter((c): c is typeof c & { id: SuiteId } => c.id !== 'all'),
+    []
+  );
+
+  const itemsBySuite = useMemo(() => {
+    const grouped: Record<SuiteId, UIShowcaseItem[]> = {
+      idle: [],
+      squishie: [],
+      bleach: [],
+      adn: [],
+      tooling: [],
     };
     for (const item of uiShowcaseItems) {
-      map[item.styleId] += 1;
+      grouped[item.styleId].push(item);
     }
-    return map;
+    return grouped;
   }, []);
 
-  const filteredItems = useMemo(() => {
-    if (activeStyle === 'all') {
-      const featured = uiShowcaseItems.filter((item) => item.featured);
-      const rest = uiShowcaseItems.filter((item) => !item.featured);
-      return [...featured, ...rest];
-    }
-    return uiShowcaseItems.filter((item) => item.styleId === activeStyle);
-  }, [activeStyle]);
-
-  const visibleItems =
-    activeStyle === 'all' && !showAll
-      ? filteredItems.slice(0, INITIAL_ALL_LIMIT)
-      : filteredItems;
-
+  const activeItems = activeSuite ? itemsBySuite[activeSuite] : uiShowcaseItems;
   const activeCategory =
-    uiStyleCategories.find((c) => c.id === activeStyle) ?? uiStyleCategories[0];
+    uiStyleCategories.find((c) => c.id === (activeSuite ?? 'all')) ?? uiStyleCategories[0];
 
   const selectedIndex = selectedItem
-    ? filteredItems.findIndex((item) => item.id === selectedItem.id)
+    ? activeItems.findIndex((item) => item.id === selectedItem.id)
     : -1;
 
   useEffect(() => {
@@ -57,124 +48,166 @@ export default function UIShowcase() {
       if (event.key === 'Escape') {
         setSelectedItem(null);
       } else if (event.key === 'ArrowRight' && selectedIndex >= 0) {
-        const next = filteredItems[(selectedIndex + 1) % filteredItems.length];
+        const next = activeItems[(selectedIndex + 1) % activeItems.length];
         if (next) setSelectedItem(next);
       } else if (event.key === 'ArrowLeft' && selectedIndex >= 0) {
-        const prev =
-          filteredItems[(selectedIndex - 1 + filteredItems.length) % filteredItems.length];
+        const prev = activeItems[(selectedIndex - 1 + activeItems.length) % activeItems.length];
         if (prev) setSelectedItem(prev);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [selectedItem, selectedIndex, filteredItems]);
+  }, [selectedItem, selectedIndex, activeItems]);
 
   const blockContext = (e: React.MouseEvent) => e.preventDefault();
+
+  const handleOpenDeck = (suiteId: SuiteId) => {
+    setActiveSuite(suiteId);
+    setTimeout(() => {
+      gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 60);
+  };
 
   return (
     <section className="section-block" id="showcase">
       <div className="section-header">
-        <span className="section-pill">CURATED VAULT · {uiShowcaseItems.length} SCREENS</span>
+        <span className="section-pill">FINISHED UI SUITES · {uiShowcaseItems.length} SCREENS</span>
         <h2>
-          Built across <em>8+ commercial styles.</em>
+          Hover a suite to fan the deck. <em>Click to inspect.</em>
         </h2>
         <p className="section-subtitle">
-          Every screen below is built for real Roblox production—clean hierarchy, crisp typography,
-          and responsive across PC, Mobile, and Console. Public previews carry subtle watermarks;
-          unwatermarked 1:1 Studio builds are shared directly with clients.
+          Every deck below holds real, finished RoUI &amp; Roblox Studio screens—organized by
+          project so you can explore each style cleanly without scrolling through noise.
         </p>
       </div>
 
-      <div className="filter-bar" role="tablist" aria-label="Filter showcase by genre">
-        {uiStyleCategories.map((cat) => {
-          const isActive = activeStyle === cat.id;
+      {/* Mamba-Inspired Interactive Fan-Out Card Decks */}
+      <div className="decks-grid">
+        {suiteCategories.map((cat) => {
+          const suiteItems = itemsBySuite[cat.id];
+          const fanCards = suiteItems.slice(0, 3);
+          const isSelected = activeSuite === cat.id;
+
           return (
             <button
               key={cat.id}
               type="button"
-              role="tab"
-              aria-selected={isActive}
-              className={`filter-pill ${isActive ? 'active' : ''}`}
-              onClick={() => {
-                setActiveStyle(cat.id);
-                setShowAll(false);
-              }}
+              className={`deck-card ${isSelected ? 'deck-active' : ''}`}
+              onClick={() => handleOpenDeck(cat.id)}
+              onContextMenu={blockContext}
+              aria-pressed={isSelected}
             >
-              <span>{cat.label}</span>
-              <small>{counts[cat.id]}</small>
+              <div className="deck-stage">
+                <div className="deck-folder-back" aria-hidden="true" />
+                <div className="deck-fan">
+                  {fanCards.map((card, i) => (
+                    <div className={`fan-slice fan-slice-${i}`} key={card.id}>
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        loading="lazy"
+                        draggable={false}
+                        className="protected-img"
+                      />
+                      <div className="anti-scrape-shield" aria-hidden="true" />
+                    </div>
+                  ))}
+                </div>
+                <div className="deck-folder-front" aria-hidden="true">
+                  <span className="folder-tab-pill">{cat.shortLabel}</span>
+                  <span className="folder-count">{suiteItems.length} screens</span>
+                </div>
+              </div>
+
+              <div className="deck-info">
+                <div className="deck-info-top">
+                  <h3>{cat.label}</h3>
+                  <span className="deck-open-hint">
+                    {isSelected ? 'Viewing ✓' : 'Open deck →'}
+                  </span>
+                </div>
+                <p>{cat.tagline}</p>
+              </div>
             </button>
           );
         })}
       </div>
 
-      <div className="category-brief">
-        <div>
-          <span className="brief-badge">{activeCategory.shortLabel}</span>
-          <p>{activeCategory.tagline}</p>
-        </div>
-        <div className="brief-meta">
-          <span>BEST FOR</span>
-          <strong>{activeCategory.bestFor}</strong>
-        </div>
-      </div>
-
-      <div className="showcase-grid">
-        {visibleItems.map((item) => (
-          <article className="showcase-card" key={item.id}>
+      {/* Active Suite Expanded Gallery */}
+      <div className="suite-drawer" ref={gridRef}>
+        <div className="suite-drawer-head">
+          <div>
+            <span className="brief-badge">{activeCategory.shortLabel}</span>
+            <h3>
+              {activeCategory.label} <span>({activeItems.length} finished screens)</span>
+            </h3>
+            <p>{activeCategory.bestFor}</p>
+          </div>
+          <div className="suite-drawer-actions">
             <button
               type="button"
-              className="showcase-card-btn"
-              onClick={() => setSelectedItem(item)}
-              onContextMenu={blockContext}
-              aria-label={`Inspect ${item.title}`}
+              className={`filter-pill ${activeSuite === null ? 'active' : ''}`}
+              onClick={() => setActiveSuite(null)}
             >
-              <div className="showcase-media-stage">
-                <div className="showcase-frame-tilt">
-                  <img
-                    src={item.image}
-                    alt={`${item.title} — ${item.project}`}
-                    loading="lazy"
-                    draggable={false}
-                    className="protected-img"
-                  />
-                  <div className="anti-scrape-shield" aria-hidden="true" />
-                </div>
-                <span className="card-style-tag">{item.styleLabel}</span>
-                <span className="card-inspect-pill">Inspect ↗</span>
-              </div>
-
-              <div className="showcase-card-body">
-                <div className="card-meta-row">
-                  <span className="card-project">{item.project}</span>
-                  <span className="card-type">{item.screenType}</span>
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.summary}</p>
-                <div className="card-deliverables">
-                  {item.deliverables.map((d) => (
-                    <span key={d}>{d}</span>
-                  ))}
-                </div>
-              </div>
+              View All ({uiShowcaseItems.length})
             </button>
-          </article>
-        ))}
+            {activeItems[0] && (
+              <button
+                type="button"
+                className="btn btn-dark btn-sm"
+                onClick={() => setSelectedItem(activeItems[0])}
+              >
+                Launch Lightbox ↗
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="showcase-grid">
+          {activeItems.map((item) => (
+            <article className="showcase-card" key={item.id}>
+              <button
+                type="button"
+                className="showcase-card-btn"
+                onClick={() => setSelectedItem(item)}
+                onContextMenu={blockContext}
+                aria-label={`Inspect ${item.title}`}
+              >
+                <div className="showcase-media-stage">
+                  <div className="showcase-frame-tilt">
+                    <img
+                      src={item.image}
+                      alt={`${item.title} — ${item.project}`}
+                      loading="lazy"
+                      draggable={false}
+                      className="protected-img"
+                    />
+                    <div className="anti-scrape-shield" aria-hidden="true" />
+                  </div>
+                  <span className="card-style-tag">{item.styleLabel}</span>
+                  <span className="card-inspect-pill">Inspect ↗</span>
+                </div>
+
+                <div className="showcase-card-body">
+                  <div className="card-meta-row">
+                    <span className="card-project">{item.project}</span>
+                    <span className="card-type">{item.screenType}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <div className="card-deliverables">
+                    {item.deliverables.map((d) => (
+                      <span key={d}>{d}</span>
+                    ))}
+                  </div>
+                </div>
+              </button>
+            </article>
+          ))}
+        </div>
       </div>
 
-      {activeStyle === 'all' && !showAll && filteredItems.length > INITIAL_ALL_LIMIT && (
-        <div className="expand-bar">
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={() => setShowAll(true)}
-          >
-            Show all {filteredItems.length} curated screens (+
-            {filteredItems.length - INITIAL_ALL_LIMIT} more)
-          </button>
-          <span className="expand-hint">Or pick any genre filter above to inspect a full suite.</span>
-        </div>
-      )}
-
+      {/* 1:1 Protected Lightbox */}
       {selectedItem && (
         <div
           className="lightbox-backdrop"
@@ -203,23 +236,21 @@ export default function UIShowcase() {
                   aria-label="Previous screen"
                   onClick={() => {
                     const prev =
-                      filteredItems[
-                        (selectedIndex - 1 + filteredItems.length) % filteredItems.length
-                      ];
+                      activeItems[(selectedIndex - 1 + activeItems.length) % activeItems.length];
                     if (prev) setSelectedItem(prev);
                   }}
                 >
                   ←
                 </button>
                 <span className="lightbox-counter">
-                  {selectedIndex + 1} / {filteredItems.length}
+                  {selectedIndex + 1} / {activeItems.length}
                 </span>
                 <button
                   type="button"
                   className="icon-btn"
                   aria-label="Next screen"
                   onClick={() => {
-                    const next = filteredItems[(selectedIndex + 1) % filteredItems.length];
+                    const next = activeItems[(selectedIndex + 1) % activeItems.length];
                     if (next) setSelectedItem(next);
                   }}
                 >

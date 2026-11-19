@@ -51,7 +51,7 @@ export type ProprietaryTool = {
 
 export type SngineSubsystem = {
   name: string;
-  modules: number;
+  mechanism: string;
   summary: string;
   keyFiles: string[];
 };
@@ -59,7 +59,7 @@ export type SngineSubsystem = {
 export type ShippedCodebase = {
   project: string;
   genre: string;
-  scale: string;
+  architecture: string;
   systemsCovered: string[];
 };
 
@@ -67,8 +67,9 @@ export type ScriptingSystem = {
   number: string;
   title: string;
   category: string;
-  scale: string;
+  techFocus: string;
   description: string;
+  whyAdvanced: string;
   snippetFile: string;
   snippet: string[];
   stack: string[];
@@ -693,19 +694,6 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     featured: true,
   },
   {
-    id: 'tool-9state-sheet',
-    title: 'RoUI 9-State Button Contact Sheet',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'RoUI Studio',
-    screenType: 'State Machine Proof',
-    summary:
-      'Automated state-machine verification across Idle, Hover, Pressed, Hold 50%, Selected, Disabled, No Funds, Locked, and Cooldown.',
-    deliverables: ['9 Canonical States', 'Stationary Hitbox', 'ClientAnimations.States'],
-    image: '/portfolio/tool-9state-sheet.webp',
-    featured: true,
-  },
-  {
     id: 'tool-native-fantasy',
     title: 'RoUI Native Vector Equipment Shop',
     styleId: 'tooling',
@@ -813,7 +801,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
     description:
       'Stationary hitboxes switching pre-rendered Idle, Hover, and Pressed atlas cells via ImageRectOffset.',
     src: '/videos/anime-buttons-60fps.mp4',
-    poster: '/portfolio/tool-9state-sheet.webp',
+    poster: '/portfolio/bleach-shop.webp',
     specs: 'SPRITESHEET · NO FLAT TWEENS',
   },
   {
@@ -946,19 +934,17 @@ export const proprietaryTools: ProprietaryTool[] = [
   },
   {
     id: 'sngine',
-    badge: 'PRIVATE LUAU ENGINE · 218+ MODULES',
+    badge: 'PRIVATE LUAU ENGINE',
     name: 'S_ngine',
-    tagline: 'Policy-first Roblox/Luau systems engine for ECS, netcode, ballistics & persistence.',
+    tagline: 'Policy-first Roblox/Luau systems engine built for zero-trust authority, low-bandwidth netcode, and deterministic simulation.',
     description:
-      'My private modular Roblox engine split cleanly into ServerStorage (Persistence, PlayerData, Ballistics.Authority, Transactions, Testing) and ReplicatedStorage (ECS, Netcode, Caching, Diagnostics, FeatureFlags, Scheduling, ValidationSchema) so projects ship fast with AAA-grade architecture.',
+      'Split strictly between ReplicatedStorage (ECS, Binary Netcode, Ballistics Kinematics, FixedTickLoop, Caching) and ServerStorage (Persistence, Atomic Transactions, Ballistics Authority, Replay/Fuzz Testing) so sensitive server authority never replicates to clients.',
     highlights: [
-      'ECS/DoD world state, fixed-tick Ballistics & combat anti-cheat',
-      'Native binary buffer Netcode + adaptive Zstandard compression',
-      'ProfileStore persistence, atomic transaction ledgers & replay fuzzing',
-      'Strict contracts, FloatCurveDamper motion & deterministic RNG harnesses',
+      'Struct-of-Arrays Ballistics with fixed-tick simulation & server hit admission',
+      'Binary buffer serialization + adaptive native Zstandard batch compression',
+      'Atomic ProfileStore transaction ledgers with rollback-safe envelopes',
+      'Deterministic offline Replay & Fuzzing harnesses to catch exploits before launch',
     ],
-    image: '/portfolio/tool-9state-sheet.webp',
-    imageAlt: 'RoUI 9-state button verification sheet driven by centralized Luau state runtime',
   },
   {
     id: 'cortex',
@@ -990,67 +976,77 @@ export const proprietaryTools: ProprietaryTool[] = [
 
 export const sngineSharedSubsystems: SngineSubsystem[] = [
   {
-    name: 'Native',
-    modules: 72,
-    summary: 'Runtime kernels, UI helpers, FloatCurveDamper motion, camera views, bounds & world utilities.',
-    keyFiles: ['CameraView.luau', 'AssetPreview.luau', 'CapabilityStore.luau'],
-  },
-  {
-    name: 'Netcode',
-    modules: 23,
-    summary: 'Bit & binary buffer serialization, typed schemas, adaptive native Zstandard batch compression.',
+    name: 'Binary Netcode & Zstandard',
+    mechanism: 'Zero-Table Buffer Packing',
+    summary:
+      'Replaces bloated string-keyed RemoteEvent tables with bit-packed Luau buffers, strict schema codecs, and adaptive Zstandard batching—slashing bandwidth and per-frame GC spikes.',
     keyFiles: ['BitReader.luau', 'BufferWriter.luau', 'Codecs.luau'],
   },
   {
-    name: 'Ballistics',
-    modules: 12,
-    summary: 'ECS fixed-tick projectile kinematics, surface materials, prediction adapters & projectile store.',
+    name: 'ECS & Data-Oriented Simulation',
+    mechanism: 'Cache-Friendly Flat State',
+    summary:
+      'Decouples entity state from Roblox Instance hierarchies using stable entity IDs, typed component registries, and deterministic system ordering without metatable chasing.',
+    keyFiles: ['World.luau', 'ComponentRegistry.luau', 'SystemScheduler.luau'],
+  },
+  {
+    name: 'Ballistics Kinematics',
+    mechanism: 'Fixed-Tick Raycast Stepping',
+    summary:
+      'Simulates projectiles in flat arrays with gravity, drag, surface material penetration, and client prediction—eliminating physical Part bullets, tunneling, and network lag.',
     keyFiles: ['Kinematics.luau', 'ProjectileStore.luau', 'PredictionAdapter.luau'],
   },
   {
-    name: 'RobloxAdapters',
-    modules: 9,
-    summary: 'Injected boundaries for Instances, Remotes, Attributes, Tags, Prompts & physics ownership.',
+    name: 'Scheduling, Time & Backpressure',
+    mechanism: 'Deterministic Fixed-Step Clocks',
+    summary:
+      'Owns simulation ticks via FixedTickLoop with injectable clocks, bounded queues, and per-player cooldown/throttle/debounce policies that prevent thread storms under load.',
+    keyFiles: ['FixedTickLoop.luau', 'BoundedQueue.luau', 'RobloxScheduler.luau'],
+  },
+  {
+    name: 'Core Contracts & Motion Kernels',
+    mechanism: 'Typed Results & Frame-Rate-Safe Damping',
+    summary:
+      'Enforces explicit Result unions (zero silent nil failures), recursively frozen Readonly views, TTL/SWR caching, and FloatCurveDamper presentation motion without custom easing loops.',
+    keyFiles: ['Result.luau', 'Readonly.luau', 'CacheStore.luau', 'CameraView.luau'],
+  },
+  {
+    name: 'Injected Roblox Boundaries',
+    mechanism: 'Testable Engine Adapters',
+    summary:
+      'Isolates Instances, Remotes, Attributes, Tags, Prompts, and physics ownership behind typed adapters so gameplay logic can be unit-tested offline without booting Studio.',
     keyFiles: ['RemoteAdapter.luau', 'PhysicsOwnershipAdapter.luau', 'TagAdapter.luau'],
-  },
-  {
-    name: 'Scheduling & Time',
-    modules: 14,
-    summary: 'Bounded queues, cooldown/throttle/debounce policies, FixedTickLoop & injectable clocks.',
-    keyFiles: ['BoundedQueue.luau', 'FixedTickLoop.luau', 'RobloxScheduler.luau'],
-  },
-  {
-    name: 'ECS, Core & Diagnostics',
-    modules: 19,
-    summary: 'World/Entity/Component registries, Result & Readonly views, TTL/SWR caching, Trace & StateMachine.',
-    keyFiles: ['World.luau', 'Result.luau', 'CacheStore.luau', 'HealthReport.luau'],
   },
 ];
 
 export const sngineServerSubsystems: SngineSubsystem[] = [
   {
-    name: 'Persistence',
-    modules: 10,
-    summary: 'ProfileStore adapter, versioned envelopes, durable sessions, schema migration & offline fakes.',
+    name: 'Durable Persistence & Envelopes',
+    mechanism: 'Schema-Versioned ProfileStore',
+    summary:
+      'Wraps ProfileStore with strict schema validation, versioned data envelopes, session locking, and safe migration paths—preventing data corruption and partial saves across server crashes.',
     keyFiles: ['ProfileRepository.luau', 'ProfileSession.luau', 'Envelope.luau'],
   },
   {
-    name: 'Testing & Verification',
-    modules: 8,
-    summary: 'Deterministic RNG, rejection fuzzing, rollback replay capture, FakeClock & PlayerData harnesses.',
-    keyFiles: ['Fuzz.luau', 'ReplayCapture.luau', 'PlayerDataHarness.luau'],
-  },
-  {
-    name: 'Transactions & World',
-    modules: 5,
-    summary: 'Atomic transaction coordinator with audit history, server interaction & projection services.',
+    name: 'Atomic Transaction Coordinator',
+    mechanism: 'Dupe-Proof Economy Settlement',
+    summary:
+      'Executes multi-party trades, marketplace purchases, and currency transfers atomically with bounded audit history—eliminating race-condition item duplication and lost proceeds.',
     keyFiles: ['TransactionCoordinator.luau', 'InteractionService.luau', 'ProjectionService.luau'],
   },
   {
-    name: 'PlayerData & Ballistics Authority',
-    modules: 4,
-    summary: 'Server-authoritative player account lifecycle hooks and anti-cheat combat hit admission.',
+    name: 'Ballistics Authority & Anti-Cheat',
+    mechanism: 'Zero-Trust Server Admission',
+    summary:
+      'Revalidates client fire intents against server state, finite-number checks, rate budgets, and line-of-sight geometry so exploiters cannot spoof hits, damage, or fire rates.',
     keyFiles: ['Ballistics/Authority.luau', 'PlayerData/Service.luau', 'Hook.luau'],
+  },
+  {
+    name: 'Replay Capture & Rejection Fuzzing',
+    mechanism: 'Deterministic Offline Verification',
+    summary:
+      'Records bounded rollback traces and runs deterministic RNG fuzz tests against hostile remote inputs, verifying edge cases offline before deploying to live players.',
+    keyFiles: ['Fuzz.luau', 'ReplayCapture.luau', 'PlayerDataHarness.luau'],
   },
 ];
 
@@ -1058,38 +1054,38 @@ export const shippedCodebases: ShippedCodebase[] = [
   {
     project: 'Idle Cartel / Syndicate',
     genre: 'Empire Tycoon & Economy',
-    scale: '199K+ lines Luau',
-    systemsCovered: ['Black Market P2P Economy', 'District Progression', 'Business Plots & Income', 'Boss Encounters', 'ProfileStore Persistence'],
+    architecture: 'Atomic P2P Marketplace',
+    systemsCovered: ['Race-Safe Black Market', 'Proceeds Recovery Ledgers', 'District Story State Machine', 'Passive Income Ticks', 'ProfileStore Persistence'],
   },
   {
     project: 'Roblox 8 Ball Pool',
     genre: 'Competitive Sports Sim',
-    scale: '170K+ lines Luau',
-    systemsCovered: ['Cue & Spin Physics Kernel', 'Singles/Doubles Matchmaking', 'Tournament Brackets', 'Spectator Cameras', 'Console Gamepad Focus'],
+    architecture: 'Deterministic Cue Physics',
+    systemsCovered: ['English Spin & Rail Rebound', 'Server-Validated Turn Sim', 'Singles/Doubles Matchmaking', 'Spectator Camera Sync', 'Gamepad Focus Routing'],
   },
   {
     project: 'AD&N Train System & TrackSnap',
     genre: 'Railway Simulation & Plugin',
-    scale: '111K+ lines Luau',
-    systemsCovered: ['Centralized Train Physics', 'Waybills & Dispatch Contracts', 'Freight Commodity Market', 'HSV Locomotive Paint', 'TrackSnap Studio Plugin'],
+    architecture: 'Centralized Track Physics',
+    systemsCovered: ['Spline Following & Braking Curves', 'CTC Signal & Switch Authority', 'Waybill & Freight Dispatch', 'Live HSV Rolling-Stock Paint', 'ChangeHistory Undo Plugin'],
+  },
+  {
+    project: 'ODMSystem (AoT Movement)',
+    genre: 'High-Speed Action Combat',
+    architecture: 'Dynamic Cable-Wrap Solver',
+    systemsCovered: ['Dual-Hook Raycast Anchoring', 'Real-Time Geometry Cable Wrapping', 'Air / Climb / Flight Blending', 'Sword Combat & Flares', 'Supply Lines & Resupply'],
   },
   {
     project: 'Project Infamy & v2 Revamp Guns',
     genre: 'Urban Crime RPG & Combat',
-    scale: '150K+ lines Luau',
-    systemsCovered: ['ECS Raycast Ballistics', 'Weight & Attachment Inventory', 'Crew Contracts & Safehouses', 'Grenades & Drive-By Combat', 'Turf Capture Zones'],
+    architecture: 'SoA Raycast Ballistics',
+    systemsCovered: ['Zero-Part Projectile Stepping', 'Weight & Attachment Sockets', '4-Player Crew Contracts', 'Grenades & Drive-By Arcs', 'Spatial-Hash Turf Capture'],
   },
   {
-    project: 'Project Raq & SCV2 ReWrite',
+    project: 'SCV2 ReWrite & Law Enforcement',
     genre: 'Open-World RP & Vehicles',
-    scale: '95K+ lines Luau',
-    systemsCovered: ['Custom Vehicle Chassis', 'Dealership & Mod Shop', 'Safehouse Floorplanner', 'Law Enforcement MDT & Taser', 'ATMs & Modular Doors'],
-  },
-  {
-    project: 'ODMSystem & Steal A Squishie',
-    genre: 'Action Movement & Simulator',
-    scale: '83K+ lines Luau',
-    systemsCovered: ['Dual-Hook ODM Grapple Physics', '93 Synced Animations', 'Collectible Shelves & Gacha', 'Tap-to-Catch Minigame', 'Daily Retention Loops'],
+    architecture: 'Server-Authoritative RP',
+    systemsCovered: ['Constraint Vehicle Chassis', 'Stealth Vision-Cone AI', 'MDT Warrant & Booking DB', 'Taser Tether & Stun Tags', 'CollectionService Doors'],
   },
 ];
 
@@ -1098,9 +1094,11 @@ export const scriptingSystems: ScriptingSystem[] = [
     number: '01',
     title: 'ECS Combat, Ballistics & Gunkits',
     category: 'AUTHORITATIVE COMBAT',
-    scale: 'S_ngine · v2 Revamp Guns',
+    techFocus: 'Struct-of-Arrays · Zero Physical Bullets',
     description:
-      'Contiguous flat-array ballistics (zero physical bullet Parts), filtered raycasts, bounded lag compensation, throwable grenades, vehicle drive-by combat, and viewmodel lifetimes.',
+      'Steps active projectiles through contiguous parallel arrays using filtered raycasts and fixed-tick kinematics—handling bullet drop, material penetration, grenades, and vehicle drive-by arcs.',
+    whyAdvanced:
+      'Spawning physical bullet Parts with BodyVelocity floods C++ allocations, clogs replication, and tunnels through walls. Flat-array raycast ballistics scales to hundreds of simultaneous shots at near-zero server cost while keeping hit admission 100% server-authoritative.',
     snippetFile: 'BatchBallistics.luau',
     snippet: [
       'function BatchBallistics.Step(dt: number)',
@@ -1110,15 +1108,36 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  end',
       'end',
     ],
-    stack: ['SoA Ballistics', 'Lag Comp', 'Grenades', 'Drive-By'],
+    stack: ['SoA Ballistics', 'Lag Compensation', 'Grenade Physics', 'Drive-By Arcs'],
   },
   {
     number: '02',
-    title: 'RoScale Train Physics & Dispatch',
-    category: 'SIMULATION ARCHITECTURE',
-    scale: '6,100+ Luau Modules · AD&N',
+    title: 'ODM Grapple, Cable Wrap & Aerial Combat',
+    category: 'ADVANCED PHYSICS',
+    techFocus: 'Dynamic Geometry Wrapping · Multi-State Motion',
     description:
-      'Centralized railway simulation covering spline/track following, locomotive power/braking curves, freight waybills, switch lists, commodity markets, and the TrackSnap Studio plugin.',
+      'Dual-hook ODM movement engine (`Hooks`, `Cables`, `Wrap`, `Flight`, `Climb`, `Motor`, `Sword`, `Flare`) with live cable wrapping around building corners, air-momentum conservation, and supply-line resupply.',
+    whyAdvanced:
+      'Standard Roblox grapple scripts just pull a player straight toward a point and clip straight through buildings. The Wrap solver detects mid-cable geometry intersections, dynamically splits cables around corners, and unwraps cleanly as the player swings past—paired with smooth camera/body tilt prediction.',
+    snippetFile: 'ODMClient/Hooks.luau',
+    snippet: [
+      'function Hooks.Fire(side: "Left" | "Right", aimRay: Ray)',
+      '  local anchor = Probe.FindAttachPoint(aimRay, MAX_RANGE)',
+      '  if not anchor then return { success = false, reason = "NoAnchor" } end',
+      '  return Cables.AttachWithWrap(side, anchor)',
+      'end',
+    ],
+    stack: ['Geometric Cable Wrap', 'Dual Hooks', 'Aerial Momentum', 'Sword & Flares'],
+  },
+  {
+    number: '03',
+    title: 'RoScale Train Physics, CTC & Studio Plugins',
+    category: 'SIMULATION & TOOLING',
+    techFocus: 'Centralized Splines · ChangeHistory Undo',
+    description:
+      'Centralized railway runtime governing locomotive tractive effort, braking curves, switch alignment, CTC signal occupancy, waybill contracts, and the native TrackSnap Studio track-building plugin.',
+    whyAdvanced:
+      'Instead of fragile physics wheels derailing on curved Roblox parts, trains follow mathematical track graphs with deterministic coupling and server-owned switch states. Companion Studio plugins wrap every mutation in ChangeHistoryService recordings so Ctrl+Z never corrupts place files.',
     snippetFile: 'DispatchService.luau',
     snippet: [
       'function DispatchService.AssignContract(player: Player, id: string)',
@@ -1127,15 +1146,35 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  return RouteRegistry.BindSiding(player, contract.data)',
       'end',
     ],
-    stack: ['Train Physics', 'Waybills', 'TrackSnap Plugin', 'Strict Luau'],
+    stack: ['Track Graph Math', 'CTC Signals', 'Waybill Dispatch', 'Native Studio Plugin'],
   },
   {
-    number: '03',
-    title: 'Custom Vehicle Chassis & Telemetry',
-    category: 'VEHICLES & NETWORKING',
-    scale: 'SCV2 ReWrite · Project Infamy',
+    number: '04',
+    title: '8-Ball Pool Physics & Matchmaking',
+    category: 'COMPETITIVE SIMULATION',
+    techFocus: 'Deterministic Impulse · Turn Authority',
     description:
-      'Responsive constraint-based vehicle chassis with networked gear/RPM telemetry, headlights, blinkers, fuel/engine health, lock permissions, and mobile touch driving dashboards.',
+      'Custom billiards physics kernel simulating cue impulse, English spin, cushion restitution, pocket capture, singles/doubles table sessions, spectator cameras, and console gamepad focus.',
+    whyAdvanced:
+      'Roblox\'s default PhysX solver produces inconsistent ball rolls and network jitter across clients. Running deterministic mathematical collision resolution guarantees identical shot outcomes, prevents shot-spoofing exploits, and keeps spectators perfectly synchronized.',
+    snippetFile: 'TableSession.luau',
+    snippet: [
+      'function TableSession.SubmitShot(player: Player, shot: ShotIntent)',
+      '  if not ShotValidator.IsFinite(shot) then return fail("Invalid") end',
+      '  return PhysicsKernel.SimulateTurn(self.TableId, shot)',
+      'end',
+    ],
+    stack: ['Deterministic Collisions', 'Spin & Restitution', 'Table Sessions', 'Console Focus'],
+  },
+  {
+    number: '05',
+    title: 'Custom Vehicle Chassis & Live Telemetry',
+    category: 'VEHICLES & REPLICATION',
+    techFocus: 'Network Ownership · Modular Telemetry',
+    description:
+      'Tuned constraint chassis with networked gear/RPM telemetry, ignition/lock authority, turn signals, fuel/engine health, and thumb-friendly mobile touch driving controls.',
+    whyAdvanced:
+      'Decouples permanent PlayerController input contexts from ephemeral vehicle seats—switching seamlessly between On-Foot, Driving, and Drive-By contexts without boolean flag soup or leaked seat connections on character respawn.',
     snippetFile: 'VehicleRuntime.luau',
     snippet: [
       'function VehicleRuntime.AdmitDriver(player: Player, chassis: Model)',
@@ -1145,48 +1184,17 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  return Possession.Mount(player, chassis)',
       'end',
     ],
-    stack: ['Chassis Physics', 'Live Telemetry', 'Mobile Controls', 'Replication'],
-  },
-  {
-    number: '04',
-    title: '8-Ball Pool Physics & Matchmaking',
-    category: 'COMPETITIVE ARCADE',
-    scale: '5,500+ Luau Files · Corner Pocket',
-    description:
-      'Deterministic cue-ball impulse, English spin and rail-rebound physics, singles/doubles table matchmaking, spectator cameras, trick-shot labs, and full gamepad focus navigation.',
-    snippetFile: 'TableSession.luau',
-    snippet: [
-      'function TableSession.SubmitShot(player: Player, shot: ShotIntent)',
-      '  if not ShotValidator.IsFinite(shot) then return fail("Invalid") end',
-      '  return PhysicsKernel.SimulateTurn(self.TableId, shot)',
-      'end',
-    ],
-    stack: ['Billiards Physics', 'Matchmaking', 'Spectate', 'Console Focus'],
-  },
-  {
-    number: '05',
-    title: 'ODM Grapple Movement & Animation',
-    category: 'CHARACTER MOVEMENT',
-    scale: '63 Modules · 93 Animations',
-    description:
-      'High-speed dual-hook grapple physics with tension constraints, aerial boost bursts, gas/blade resource loops, and synchronized client/server animation state blending.',
-    snippetFile: 'ODMController.luau',
-    snippet: [
-      'function ODMController.FireHook(side: "Left" | "Right", aimRay: Ray)',
-      '  local anchor = HookQuery.FindSurface(aimRay, MAX_RANGE)',
-      '  if not anchor then return { success = false, reason = "NoAnchor" } end',
-      '  return TetherSolver.Attach(side, anchor)',
-      'end',
-    ],
-    stack: ['Dual Grapple', 'Air Physics', '93 Animations', 'Client Prediction'],
+    stack: ['Constraint Chassis', 'Input Context Stack', 'Live Telemetry', 'Mobile Driving'],
   },
   {
     number: '06',
     title: 'Spatial-Hash Turf & Crew Contracts',
     category: 'MULTIPLAYER WORLD STATE',
-    scale: 'Zero .Touched PhysX Stalls',
+    techFocus: 'O(1) Spatial Hashing · Zero .Touched Stalls',
     description:
-      'Pure mathematical SpatialHashGrid territory capture zones, 4-player crew contract lobbies, server-authoritative objective tracking, and exploit-resistant payout settlements.',
+      'Mathematical 2D/3D SpatialHashGrid powering territory capture zones, proximity triggers, 4-player crew contract dispatch, and server-authoritative objective settlements.',
+    whyAdvanced:
+      'Using invisible Parts with .Touched or GetPartsInPart inside Heartbeat stalls Roblox\'s PhysX broadphase and tanks server tickrate as player counts grow. Cell-based spatial hashing queries zone occupancy in O(1) pure Luau math with zero physics overhead.',
     snippetFile: 'TurfZoneService.luau',
     snippet: [
       'function TurfZoneService.QueryOccupants(zoneId: string)',
@@ -1194,15 +1202,17 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  return SpatialHashGrid.QueryRadius(zone.Center, zone.Radius)',
       'end',
     ],
-    stack: ['SpatialHashGrid', 'Turf Capture', 'Crew Lobbies', 'Zero PhysX Stall'],
+    stack: ['SpatialHashGrid', 'Zero PhysX Stall', 'Crew Dispatch', 'Authoritative Zones'],
   },
   {
     number: '07',
-    title: 'Economy, Commerce & Persistence',
-    category: 'DATA & TRANSACTIONS',
-    scale: 'S_ngine · ProfileStore Ledgers',
+    title: 'Dupe-Proof Economy & Binary Netcode',
+    category: 'PERSISTENCE & NETCODE',
+    techFocus: 'Atomic Ledgers · Buffer + Zstd',
     description:
-      'Atomic currency ledgers, ProfileStore durable saves, binary-buffer Zstandard netcode, player marketplaces, interactive ATMs, gacha odds, and restocking shop inventories.',
+      'Atomic currency ledgers, ProfileStore session-locked persistence, P2P black-market receipts with proceeds recovery, gacha odds engines, and binary-buffer Zstandard networking.',
+    whyAdvanced:
+      'Multiplayer Roblox economies get destroyed by disconnect-timing dupes and NaN/Inf payload exploits. Every transfer runs through finite-number schema validation and an atomic commit/rollback coordinator with receipt recovery if a seller disconnects mid-trade.',
     snippetFile: 'LedgerService.luau',
     snippet: [
       'function LedgerService.Transfer(from: Player, to: Player, amount: number)',
@@ -1210,15 +1220,17 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  return TransactionKernel.CommitAtomic(from, to, amount)',
       'end',
     ],
-    stack: ['ProfileStore', 'Binary Buffers', 'Zstd Netcode', 'Atomic Ledgers'],
+    stack: ['Atomic Ledgers', 'ProfileStore Locks', 'Binary Buffers', 'Exploit Hardening'],
   },
   {
     number: '08',
-    title: 'Stealth AI, MDT & Modular World Tools',
-    category: 'AI & RP INFRASTRUCTURE',
-    scale: 'NPCs · Law Enforcement · Doors',
+    title: 'Stealth AI, Law Enforcement & World Tools',
+    category: 'AI & INTERACTION',
+    techFocus: 'Vision Cones · CollectionService Components',
     description:
-      'NPC vision-cone stealth infiltration loops, law enforcement MDT warrant/booking databases, taser probe tools, and CollectionService-driven modular doors and world prompts.',
+      'NPC vision-cone stealth infiltration loops, police MDT warrant/booking databases, dual-prong taser probes with gameplay state tags, and CollectionService-driven modular doors.',
+    whyAdvanced:
+      'World objects (doors, prompts, stations) contain zero scattered scripts—centralized CollectionService binders own every lifecycle with LIFO Trove cleanup and per-character os.clock() debounces so one player never locks out another.',
     snippetFile: 'StealthDetector.luau',
     snippet: [
       'function StealthDetector.EvaluateSight(npc: Model, target: Model)',
@@ -1226,7 +1238,7 @@ export const scriptingSystems: ScriptingSystem[] = [
       '  return dot >= FOV_COS and hasLineOfSight(npc, target)',
       'end',
     ],
-    stack: ['Stealth AI', 'MDT Database', 'Taser Probes', 'CollectionService'],
+    stack: ['Vision-Cone AI', 'Gameplay Tags', 'CollectionService', 'Keyed Debounces'],
   },
 ];
 

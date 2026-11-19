@@ -81,23 +81,23 @@ export default function Home() {
 
           <div className="hero-stats-strip">
             <div className="stat-item">
-              <strong>10+ Yrs</strong>
-              <span>Roblox Studio &amp; Luau</span>
+              <strong>Studio-Ready UI</strong>
+              <span>Compiled via RoUI · PC / Mobile / Console</span>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
-              <strong>{uiShowcaseItems.length}</strong>
-              <span>Curated Production Screens</span>
+              <strong>Zero Flat Tweens</strong>
+              <span>Whole-State Spritesheets &amp; Stationary Hitboxes</span>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
-              <strong>8+ Styles</strong>
-              <span>Empire · Sim · Anime · CAD · RP</span>
+              <strong>S_ngine Architecture</strong>
+              <span>ECS · Binary Netcode · Atomic Ledgers</span>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
-              <strong>14 Demos</strong>
-              <span>6 Animated UI · 8 Live Luau</span>
+              <strong>End-to-End</strong>
+              <span>Design · RoUI Compilation · Luau Systems</span>
             </div>
           </div>
 
@@ -223,14 +223,14 @@ export default function Home() {
         {/* DEDICATED S_NGINE ARCHITECTURE BREAKDOWN */}
         <section className="section-block" id="sngine">
           <div className="section-header">
-            <span className="section-pill">PRIVATE LUAU ARCHITECTURE · 218 MODULES</span>
+            <span className="section-pill">PRIVATE LUAU ARCHITECTURE · S_NGINE</span>
             <h2>
               Inside <em>S_ngine.</em>
             </h2>
             <p className="section-subtitle">
-              44,000+ lines of modular, policy-first Luau split cleanly across ReplicatedStorage and
-              ServerStorage—giving every game ECS ballistics, binary-buffer Zstandard netcode,
-              ProfileStore ledgers, and deterministic replay testing out of the box.
+              A policy-first Roblox engine strictly separating shared simulation from server-only
+              authority—engineered for zero-trust security, low-bandwidth binary netcode, dupe-proof
+              persistence, and deterministic offline testing.
             </p>
           </div>
 
@@ -245,7 +245,7 @@ export default function Home() {
                   <div className="sngine-sub-row" key={sub.name}>
                     <div className="sngine-sub-top">
                       <strong>{sub.name}</strong>
-                      <span>{sub.modules} modules</span>
+                      <span>{sub.mechanism}</span>
                     </div>
                     <p>{sub.summary}</p>
                     <div className="sngine-files">
@@ -268,7 +268,7 @@ export default function Home() {
                   <div className="sngine-sub-row" key={sub.name}>
                     <div className="sngine-sub-top">
                       <strong>{sub.name}</strong>
-                      <span>{sub.modules} modules</span>
+                      <span>{sub.mechanism}</span>
                     </div>
                     <p>{sub.summary}</p>
                     <div className="sngine-files">
@@ -289,15 +289,15 @@ export default function Home() {
           {/* Real Shipped Codebases Coverage */}
           <div className="codebases-wrap">
             <div className="codebases-head">
-              <span className="brief-badge">VERIFIED PRODUCTION COVERAGE</span>
-              <h3>Real systems shipped across 6 major Roblox codebases</h3>
+              <span className="brief-badge">ARCHITECTURAL COVERAGE</span>
+              <h3>Production systems engineered across real Roblox projects</h3>
             </div>
             <div className="codebases-grid">
               {shippedCodebases.map((cb) => (
                 <article className="codebase-card" key={cb.project}>
                   <div className="codebase-top">
                     <strong>{cb.project}</strong>
-                    <span className="codebase-scale">{cb.scale}</span>
+                    <span className="codebase-scale">{cb.architecture}</span>
                   </div>
                   <small className="codebase-genre">{cb.genre}</small>
                   <div className="codebase-tags">
@@ -316,11 +316,11 @@ export default function Home() {
           <div className="section-header">
             <span className="section-pill">LUAU GAMEPLAY ENGINEERING</span>
             <h2>
-              Full-stack Roblox scripting <em>under the hood.</em>
+              The technology <em>under the hood.</em>
             </h2>
             <p className="section-subtitle">
-              Hire me for UI alone, scripting alone, or the complete turnkey loop—authoritative
-              server logic, clean 2-phase lifecycles, and zero-bloat modules your team can extend.
+              Deep technical breakdowns of how each system is engineered and why it outperforms
+              standard Roblox scripts under live multiplayer load.
             </p>
           </div>
 
@@ -331,11 +331,15 @@ export default function Home() {
                   <span className="system-num">{sys.number}</span>
                   <div className="system-top-meta">
                     <span className="system-cat">{sys.category}</span>
-                    <small className="system-scale">{sys.scale}</small>
+                    <small className="system-scale">{sys.techFocus}</small>
                   </div>
                 </div>
                 <h3>{sys.title}</h3>
                 <p>{sys.description}</p>
+                <div className="why-advanced-box">
+                  <span>WHY IT&apos;S ADVANCED</span>
+                  <p>{sys.whyAdvanced}</p>
+                </div>
                 <div className="code-preview-box">
                   <div className="code-preview-bar">
                     <span>{sys.snippetFile}</span>
