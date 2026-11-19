@@ -86,9 +86,9 @@ export default function PricingAndFaq() {
               ))}
             </ul>
             <div className="studio-advantage-box">
-              <strong>Studio Retainers &amp; Scripting-Only:</strong> Available at{' '}
-              <code>$45 – $75 / hr</code> for gameplay systems, vehicles, combat, and legacy
-              codebase rewrites.
+              <strong>Scripting-Only &amp; Retainers:</strong> Available at{' '}
+              <code>$25 – $45 / hr</code> (or fixed per-system quote) for combat, vehicles,
+              persistence, and legacy codebase rewrites.
             </div>
           </div>
         </div>

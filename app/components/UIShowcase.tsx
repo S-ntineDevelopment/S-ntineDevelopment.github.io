@@ -26,7 +26,6 @@ export default function UIShowcase() {
       squishie: [],
       bleach: [],
       adn: [],
-      tooling: [],
     };
     for (const item of uiShowcaseItems) {
       grouped[item.styleId].push(item);
@@ -76,8 +75,17 @@ export default function UIShowcase() {
           Hover a suite to fan the deck. <em>Click to inspect.</em>
         </h2>
         <p className="section-subtitle">
-          Every deck below holds real, finished RoUI &amp; Roblox Studio screens—organized by
-          project so you can explore each style cleanly without scrolling through noise.
+          Every deck below holds real, finished RoUI &amp; Roblox Studio screens—plus live animated
+          GIFs and WebPs—organized by game so you can explore each style cleanly.
+        </p>
+      </div>
+
+      <div className="curation-notice">
+        <span className="notice-tag">CURATED SELECTION</span>
+        <p>
+          Because modern AI tools can clone flat layouts directly from public portfolio pages, this
+          site intentionally showcases only the most relevant finished pieces—not my entire UI
+          library. Full private suites and live Studio places are shared directly upon inquiry.
         </p>
       </div>
 

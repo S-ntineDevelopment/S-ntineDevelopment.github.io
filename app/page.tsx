@@ -324,6 +324,15 @@ export default function Home() {
             </p>
           </div>
 
+          <div className="curation-notice">
+            <span className="notice-tag">SELECTIVE CODE SHOWCASE</span>
+            <p>
+              To protect client IP and prevent AI scraping of private production codebases, only
+              high-level architecture breakdowns and representative snippets are published here—not
+              the full repositories. Private walkthroughs and live tests are available on inquiry.
+            </p>
+          </div>
+
           <div className="systems-grid">
             {scriptingSystems.map((sys) => (
               <article className="system-card" key={sys.number}>

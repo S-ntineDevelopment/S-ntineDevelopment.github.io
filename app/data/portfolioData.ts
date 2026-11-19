@@ -3,8 +3,7 @@ export type UIStyleId =
   | 'idle'
   | 'squishie'
   | 'bleach'
-  | 'adn'
-  | 'tooling';
+  | 'adn';
 
 export type UIStyleCategory = {
   id: UIStyleId;
@@ -131,16 +130,8 @@ export const uiStyleCategories: UIStyleCategory[] = [
     label: 'AD&N Train System',
     shortLabel: 'AD&N TRAINS',
     tagline:
-      'Finished industrial railway UIs compiled in RoUI: CTC Dispatcher board, Operations, Industry Overview, Consist Setup, Locomotive Store, Turntable & Settings.',
-    bestFor: 'Train sims, logistics, industrial CAD interfaces & complex simulation',
-  },
-  {
-    id: 'tooling',
-    label: 'RoUI & Studio Builds',
-    shortLabel: 'ROUI + STUDIO',
-    tagline:
-      'Live Roblox Studio captures (SCV2 Vehicle HUD, Mano Booking MDT, MDT Finder) plus RoUI dual-viewport TouchGui audits and 9-state spritesheet verification.',
-    bestFor: 'Studio-ready responsive verification, whole-state buttons & RP systems',
+      'Finished industrial railway UIs & live animated mechanical press/entry motion: CTC Dispatcher, Operations, Industry, Consist, Locomotive Store & Loading.',
+    bestFor: 'Train sims, logistics, industrial CAD interfaces & mechanical simulation',
   },
 ];
 
@@ -280,8 +271,58 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     deliverables: ['Monetization UI', 'Bundle Cards', 'Studio Ready'],
     image: '/portfolio/ic-store-offer.webp',
   },
+  {
+    id: 'ic-collect-motion',
+    title: 'Cash Collection — Animated Flipbook FX (GIF)',
+    styleId: 'idle',
+    styleLabel: 'Idle Cartel',
+    project: 'Idle Cartel',
+    screenType: 'Live Animated GIF',
+    summary:
+      '24-frame packed sprite cadence powering tactile cash collection feedback without procedural tween blur.',
+    deliverables: ['Live Motion GIF', '24-Frame Atlas', 'Zero Tween Blur'],
+    image: '/portfolio/ic-collect-motion.gif',
+    featured: true,
+  },
+  {
+    id: 'ic-fight-strike',
+    title: 'Combat Crossed Strike — Animated FX (GIF)',
+    styleId: 'idle',
+    styleLabel: 'Idle Cartel',
+    project: 'Idle Cartel',
+    screenType: 'Live Animated GIF',
+    summary:
+      'Fixed-pivot 2D combat strike impact sequence authored for responsive fight resolution.',
+    deliverables: ['Live Motion GIF', 'Fixed-Pivot FX', 'Combat UI'],
+    image: '/portfolio/ic-fight-strike.gif',
+  },
+  {
+    id: 'ic-fight-weapon',
+    title: 'Weapon Combat Motion — Animated Sequence (GIF)',
+    styleId: 'idle',
+    styleLabel: 'Idle Cartel',
+    project: 'Idle Cartel',
+    screenType: 'Live Animated GIF',
+    summary:
+      'Animated weapon motion playback used inside Idle Cartel encounter modals.',
+    deliverables: ['Live Motion GIF', 'Encounter UI', 'Lossless Atlas'],
+    image: '/portfolio/ic-fight-weapon.gif',
+  },
 
   // --- STEAL A SQUISHIE (12 Finished Screens) ---
+  {
+    id: 'sas-inventory-motion',
+    title: 'Inventory — Approved Live Motion Sequence (Animated WebP)',
+    styleId: 'squishie',
+    styleLabel: 'Steal A Squishie',
+    project: 'Steal A Squishie',
+    screenType: 'Live Animated WebP',
+    summary:
+      'Approved interactive inventory motion sequence showing live rarity card highlights, hover depth, and tactile button state transitions.',
+    deliverables: ['Live Animated WebP', 'Approved Motion', 'RoUI Compiled'],
+    image: '/portfolio/sas-inventory-motion.webp',
+    featured: true,
+  },
   {
     id: 'sas-inventory',
     title: 'Inventory — Rarity Grid, Routing & Bulk Sell',
@@ -678,69 +719,66 @@ export const uiShowcaseItems: UIShowcaseItem[] = [
     deliverables: ['6 Settings Tabs', 'Input Binding', 'RoUI Compiled'],
     image: '/portfolio/adn-settings.webp',
   },
-
-  // --- ROUI TOOLING & REAL STUDIO CAPTURES (6) ---
   {
-    id: 'tool-dual-viewport',
-    title: 'RoUI Dual-Viewport Audit (PC 1080p vs Mobile TouchGui)',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'RoUI Studio',
-    screenType: 'Automated Verification',
+    id: 'adn-entry-sequence',
+    title: 'Entry & Loading Sequence — Live Motion (Animated WebP)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Live Animated WebP',
     summary:
-      'Simultaneous Desktop 1080p and Mobile Landscape 844x390 audit overlaying Roblox TouchGui safe zones and 44px tap-target checks.',
-    deliverables: ['TouchGui Safe Zones', '44px Tap Audit', 'Gamepad Focus'],
-    image: '/portfolio/tool-dual-viewport.webp',
+      'Smooth animated railway entry and loading transition authored for seamless game startup.',
+    deliverables: ['Live Motion WebP', 'Entry Sequence', 'Brand Motion'],
+    image: '/portfolio/adn-entry-sequence.webp',
     featured: true,
   },
   {
-    id: 'tool-native-fantasy',
-    title: 'RoUI Native Vector Equipment Shop',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'RoUI Studio',
-    screenType: '66-Node Native Vector',
+    id: 'adn-controller-motion',
+    title: 'Locomotive Controller — Physical Button Motion (Animated WebP)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Live Animated WebP',
     summary:
-      '100% native vector Roblox UI compiled directly from RoUI schematics with crisp UIStroke/UICorner geometry.',
-    deliverables: ['100% Native Vector', 'Zero Image Bloat', '3D Viewport'],
-    image: '/portfolio/tool-native-fantasy.webp',
+      'Mechanical industrial pushbutton travel baked directly into whole-state spritesheets with stationary hitboxes.',
+    deliverables: ['Live Motion WebP', 'Mechanical Travel', 'Stationary Hitbox'],
+    image: '/portfolio/adn-controller-motion.webp',
   },
   {
-    id: 'studio-vehicle-hud',
-    title: 'SCV2 — Live Vehicle Telemetry HUD',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'SCV2 ReWrite',
-    screenType: 'Live Roblox Studio',
+    id: 'adn-programmer-upgrades',
+    title: 'Programmer Upgrades — Physical Press States (Animated WebP)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Live Animated WebP',
     summary:
-      'Compact live driving HUD tracking MPH, gear, ignition, locks, blinkers, parking brake, headlights, engine health, and fuel.',
-    deliverables: ['Live Studio Capture', 'Vehicle Telemetry', 'Luau Wired'],
-    image: '/portfolio/studio-vehicle-hud.webp',
-    featured: true,
+      'Tactile hardware-panel button press states for the locomotive decoder & upgrade programmer.',
+    deliverables: ['Live Motion WebP', 'Hardware UI', 'Whole-State Atlas'],
+    image: '/portfolio/adn-programmer-upgrades.webp',
   },
   {
-    id: 'studio-booking-mdt',
-    title: 'Mano County — Law Enforcement Booking Station',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'Mano County RP',
-    screenType: 'Live Roblox Studio',
+    id: 'adn-programmer-decoder',
+    title: 'DCC Decoder — Physical Press Interaction (Animated WebP)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Live Animated WebP',
     summary:
-      'In-game police booking terminal with searchable penal codes, live sentence duration accumulator, and charge summary.',
-    deliverables: ['Live Studio Capture', 'Penal Code System', 'Role Gated'],
-    image: '/portfolio/studio-booking-mdt.webp',
+      'Interactive DCC decoder panel demonstrating crisp mechanical button feedback.',
+    deliverables: ['Live Motion WebP', 'DCC Controls', 'Zero Flat Tweens'],
+    image: '/portfolio/adn-programmer-decoder.webp',
   },
   {
-    id: 'studio-mdt-finder',
-    title: 'Police MDT — Player & Warrant Lookup',
-    styleId: 'tooling',
-    styleLabel: 'RoUI & Studio',
-    project: 'RP MDT System',
-    screenType: 'Live Roblox Studio',
+    id: 'adn-loading-logo',
+    title: 'AD&N Brand Loading Emblem — Animated Loop (GIF)',
+    styleId: 'adn',
+    styleLabel: 'AD&N Train System',
+    project: 'AD&N Train System',
+    screenType: 'Live Animated GIF',
     summary:
-      'Live citizen lookup displaying conviction counts, active warrants/citations, and firearms/vehicle license status.',
-    deliverables: ['Live Studio Capture', 'Warrant Lookup', 'Database UI'],
-    image: '/portfolio/studio-mdt-finder.webp',
+      'Custom animated loading emblem engineered as a looping sprite atlas for Roblox.',
+    deliverables: ['Live Motion GIF', 'Looping Atlas', 'Brand Motion'],
+    image: '/portfolio/adn-loading-logo.gif',
   },
 ];
 
@@ -827,8 +865,30 @@ export const showcaseVideos: ShowcaseVideo[] = [
     specs: '60 FPS · ABILITY CARDS',
   },
   {
-    id: 'vid-guns',
+    id: 'vid-squishie-nine',
     number: '07',
+    category: 'ANIMATED UI',
+    title: 'Steal A Squishie — All 9 Tiered Character Animations',
+    description:
+      'Complete 9-character animated collectible showcase spanning Common, Rare, Epic, Legendary, Galactic, and Void tiers.',
+    src: '/videos/squishie-all-nine-motion.mp4',
+    poster: '/portfolio/sas-inventory.webp',
+    specs: 'ANIMATED COLLECTIBLES · 9 TIERS',
+  },
+  {
+    id: 'vid-bleach-bg',
+    number: '08',
+    category: 'ANIMATED UI',
+    title: 'Requiem — Painted Flame & Border Motion (60fps)',
+    description:
+      'Seamless looping painted energy backdrop driving the Requiem skill and stat screens at 60fps.',
+    src: '/videos/bleach-painted-bg-60fps.mp4',
+    poster: '/portfolio/bleach-skills.webp',
+    specs: '60 FPS · LOOPING BACKDROP',
+  },
+  {
+    id: 'vid-guns',
+    number: '09',
     category: 'GAMEPLAY SYSTEM',
     title: 'Authoritative Gun & Ballistics System',
     description:
@@ -839,7 +899,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
   },
   {
     id: 'vid-grenades',
-    number: '08',
+    number: '10',
     category: 'GAMEPLAY SYSTEM',
     title: 'Grenade Physics & Throwables',
     description:
@@ -850,51 +910,51 @@ export const showcaseVideos: ShowcaseVideo[] = [
   },
   {
     id: 'vid-stealth',
-    number: '09',
+    number: '11',
     category: 'GAMEPLAY SYSTEM',
     title: 'Stealth Detection & AI Awareness System',
     description:
       'Line-of-sight vision cones, noise/visibility meters, alert escalation, and NPC patrol state machines.',
     src: '/videos/stealth-demo.mp4',
-    poster: '/portfolio/studio-mdt-finder.webp',
+    poster: '/portfolio/ic-marketplace-desktop.webp',
     specs: 'ROBLOX STUDIO · STEALTH AI',
   },
   {
     id: 'vid-infiltration',
-    number: '10',
+    number: '12',
     category: 'GAMEPLAY SYSTEM',
     title: 'Infiltration & Heist Gameplay Loop',
     description:
       'End-to-end infiltration mechanics combining stealth, world interaction, security bypasses, and server authority.',
     src: '/videos/infiltration-demo.mp4',
-    poster: '/portfolio/ic-marketplace-desktop.webp',
+    poster: '/portfolio/ic-marketplace-buy-confirm.webp',
     specs: 'ROBLOX STUDIO · FULL LOOP',
   },
   {
     id: 'vid-taser',
-    number: '11',
+    number: '13',
     category: 'GAMEPLAY SYSTEM',
     title: 'Law Enforcement Taser Probe & Stun',
     description:
       'Dual-prong tether physics, server-authoritative stun tags, cooldowns, and clean state recovery.',
     src: '/videos/taser-probe-demo.mp4',
-    poster: '/portfolio/studio-booking-mdt.webp',
+    poster: '/portfolio/adn-operations.webp',
     specs: 'ROBLOX STUDIO · RP TOOLS',
   },
   {
     id: 'vid-dry-stun',
-    number: '12',
+    number: '14',
     category: 'GAMEPLAY SYSTEM',
     title: 'Close-Range Dry Stun Taser System',
     description:
       'Server-validated proximity stun discharge, animation sync, and per-player keyed debounces.',
     src: '/videos/dry-stun-taser-demo.mp4',
-    poster: '/portfolio/studio-vehicle-hud.webp',
+    poster: '/portfolio/adn-industry.webp',
     specs: 'ROBLOX STUDIO · COMBAT TOOLS',
   },
   {
     id: 'vid-clip-1',
-    number: '13',
+    number: '15',
     category: 'GAMEPLAY SYSTEM',
     title: 'Live Studio Gameplay Test — Build 01',
     description:
@@ -905,7 +965,7 @@ export const showcaseVideos: ShowcaseVideo[] = [
   },
   {
     id: 'vid-clip-2',
-    number: '14',
+    number: '16',
     category: 'GAMEPLAY SYSTEM',
     title: 'Live Studio Gameplay Test — Build 02',
     description:
@@ -1247,27 +1307,27 @@ export const pricingTiers: PricingTier[] = [
     id: 'single',
     name: 'Single Screen / HUD',
     badge: 'DESIGN + STUDIO IMPORT',
-    usd: '$55 – $160',
-    robux: '15,000 – 42,000 R$',
-    turnaround: '2 – 4 Days',
+    usd: '$25 – $65',
+    robux: '6,500 – 17,000 R$',
+    turnaround: '1 – 3 Days',
     revisions: '2 Revisions',
     theme: 'light',
     tagline:
-      'One major screen (Shop, Inventory, Stats, HUD, Booking, or Customizer) delivered Studio-ready — no extra import fee.',
+      'One major screen (Shop, Inventory, Stats, HUD, or Customizer) delivered Studio-ready — no extra import fee.',
     features: [
       'Custom design in your chosen style (illustrated or 100% native vector)',
       'Clean native Roblox ScreenGui hierarchy included (no raw PNG dumps)',
       'PC, Mobile & Console responsive scaling verified in RoUI',
-      'Simple utility popups or mini-HUDs start at $35 – $70',
+      'Smaller popups, prompts, or utility HUDs start at $15 – $25',
     ],
   },
   {
     id: 'turnkey-screen',
     name: 'Turnkey Interactive Screen',
     badge: 'UI + SPRITESHEETS + LUAU',
-    usd: '$100 – $250+',
-    robux: '26,000 – 66,000+ R$',
-    turnaround: '3 – 6 Days',
+    usd: '$45 – $110',
+    robux: '12,000 – 29,000 R$',
+    turnaround: '2 – 4 Days',
     revisions: '3 Revisions',
     theme: 'slate',
     tagline:
@@ -1276,16 +1336,16 @@ export const pricingTiers: PricingTier[] = [
       'Whole-state button spritesheets (Idle, Hover, Pressed, Disabled — zero flat tweens)',
       'Centralized ClientAnimations.luau & UIConfig.luau runtime wired',
       'Mobile TouchGui safe-zone audit + gamepad focus trapping',
-      'Cortex AST-verified strict Luau with Trove cleanup',
+      'Cortex AST-verified strict Luau with clean Trove teardown',
     ],
   },
   {
     id: 'full-suite',
     name: 'Full Game UI Suite',
     badge: 'MOST POPULAR',
-    usd: '$650 – $1,800',
-    robux: '170,000 – 475,000 R$',
-    turnaround: '1 – 3 Weeks',
+    usd: '$250 – $650',
+    robux: '65,000 – 170,000 R$',
+    turnaround: '1 – 2 Weeks',
     revisions: '3 Milestone Reviews',
     theme: 'dark',
     tagline:
@@ -1294,20 +1354,20 @@ export const pricingTiers: PricingTier[] = [
       '8 to 15 cohesive screens + full gameplay HUD + icon set',
       'Studio-ready .rbxl / .rbxm delivery included (no Figma-only surcharges)',
       'Dual-viewport Desktop vs. Mobile safe-zone verification across every screen',
-      'Style guide & reusable component templates for future updates',
+      'Reusable component templates so your team can add future screens easily',
     ],
   },
   {
     id: 'full-turnkey',
     name: 'Full Turnkey UI + Systems',
     badge: 'DELUXE · STUDIO GRADE',
-    usd: '$1,200 – $3,200+',
-    robux: '315,000 – 840,000+ R$',
-    turnaround: '2 – 6 Weeks',
+    usd: '$500 – $1,400+',
+    robux: '130,000 – 370,000+ R$',
+    turnaround: '2 – 5 Weeks',
     revisions: '5 Milestone Reviews',
     theme: 'deluxe',
     tagline:
-      'End-to-end UI suite + full interactive client runtime + server-authoritative Luau gameplay systems. Also available as a $45 – $75/hr retainer.',
+      'End-to-end UI suite + full interactive client runtime + server-authoritative Luau gameplay systems. Flexible milestone pricing.',
     features: [
       'Complete Full Game UI Suite + whole-state spritesheets & 60fps motion',
       'Wired client UI controllers, template population & gamepad support',
@@ -1324,22 +1384,22 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: 'Do you deliver illustrated UI, vector UI, or both?',
-    a: 'Both. With 10+ years of Roblox UI design and development experience, I deliver everything from clean minimalist vector HUDs and CAD/RP interfaces to rich illustrated storefronts, custom icons, and whole-state metallic button spritesheets—always compiled cleanly into native Roblox Studio ScreenGuis.',
+    a: 'Both. With 10+ years of Roblox UI design and development experience, I deliver everything from clean minimalist vector HUDs and CAD interfaces to rich illustrated storefronts, custom icons, and whole-state metallic button spritesheets—always compiled cleanly into native Roblox Studio ScreenGuis.',
   },
   {
     q: 'What are your payment terms and Robux conversion rates?',
-    a: 'USD (PayPal, Stripe, Wise) is preferred. Robux is accepted at the standard DevEx rate ($0.0038/R$, roughly 263 R$ per $1 USD); clients cover Roblox\'s 30% marketplace tax if not paying via Group Funds. Projects under $300 are 100% upfront; larger suites are 50% upfront / 50% on delivery or milestone-based.',
+    a: 'USD (PayPal, Stripe, Wise) is preferred. Robux is accepted at the standard DevEx rate ($0.0038/R$, roughly 263 R$ per $1 USD); clients cover Roblox\'s 30% marketplace tax if not paying via Group Funds. Projects under $150 are 100% upfront; larger suites are 50% upfront / 50% on delivery or milestone-based.',
   },
   {
-    q: 'Why are the showcase images on this site watermarked?',
-    a: 'To prevent unauthorized AI reference cloning and asset scraping. Serious studios and clients receive clean, unwatermarked 1:1 previews and live Roblox Studio place tests upon inquiry.',
+    q: 'Why is only a curated selection shown here instead of your entire library?',
+    a: 'Because modern AI tools can clone flat layouts and public code directly from portfolio websites, this site intentionally showcases only the most relevant finished pieces—not my full UI library or private Luau repositories. Complete private suites, unwatermarked proofs, and live Studio places are shared directly upon inquiry.',
   },
   {
     q: 'Can I hire you strictly for Luau scripting or systems rewrites?',
-    a: 'Yes. I take standalone gameplay scripting, vehicle/train simulation, combat/ballistics, anti-cheat, persistence, and legacy codebase rewrite commissions on a fixed-scope or $45–$75/hr studio retainer basis.',
+    a: 'Yes. I take standalone gameplay scripting, vehicle/train simulation, combat/ballistics, anti-cheat, persistence, and legacy codebase rewrite commissions on a fixed-scope or $25–$45/hr basis.',
   },
   {
     q: 'What do you need from me to get an accurate quote?',
-    a: 'Send your game genre, a list of screens or systems you need, your target visual style (or pick one of the styles showcased above), whether you want Studio-ready UI only or wired Luau, and your target timeline.',
+    a: 'Send your game genre, a list of screens or systems you need, your target visual style (or pick one of the suites showcased above), whether you want Studio-ready UI only or wired Luau, and your target budget/timeline.',
   },
 ];
