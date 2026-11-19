@@ -1,499 +1,453 @@
+import DemosSection from './components/DemosSection';
+import PricingAndFaq from './components/PricingAndFaq';
 import UIShowcase from './components/UIShowcase';
 import {
-  capabilities,
-  principles,
-  projects,
+  marqueeHighlights,
+  proprietaryTools,
+  scriptingSystems,
+  shippedCodebases,
+  sngineServerSubsystems,
+  sngineSharedSubsystems,
   uiShowcaseItems,
-  videos,
-  type ShowcaseVideo,
 } from './data/portfolioData';
 
-function VideoCard({ video }: { video: ShowcaseVideo }) {
-  return (
-    <article className="video-card">
-      <div className="video-frame">
-        <video
-          controls
-          playsInline
-          preload="metadata"
-          poster={video.poster}
-          src={video.src}
-        />
-        <span className="video-badge">{video.category}</span>
-      </div>
-      <div className="video-body">
-        <div className="video-meta-row">
-          <span>{video.number} / DEMO</span>
-          <small>{video.specs}</small>
-        </div>
-        <h3>{video.title}</h3>
-        <p>{video.description}</p>
-      </div>
-    </article>
-  );
-}
-
-function ExplorerPanel() {
-  return (
-    <aside className="studio-sidebar">
-      <section className="side-panel explorer-panel">
-        <div className="side-heading">
-          <span>EXPLORER</span>
-          <span className="side-actions">＋ ⋯</span>
-        </div>
-        <div className="tree">
-          <a className="tree-row root-row" href="#top">
-            <span className="chevron">⌄</span>
-            <span className="tree-icon workspace-icon">◇</span>Workspace
-          </a>
-          <a className="tree-row selected" href="#ui-showcase">
-            <span className="chevron">›</span>
-            <span className="tree-icon script-icon">▤</span>StarterGui · UI ({uiShowcaseItems.length})
-          </a>
-          <a className="tree-row nested" href="#work">
-            <span className="chevron">›</span>
-            <span className="tree-icon">▣</span>Projects ({String(projects.length).padStart(2, '0')})
-          </a>
-          <a className="tree-row nested" href="#videos">
-            <span className="chevron">›</span>
-            <span className="tree-icon workspace-icon">▶</span>Demos ({String(videos.length).padStart(2, '0')})
-          </a>
-          <a className="tree-row nested" href="#skills">
-            <span className="chevron">›</span>
-            <span className="tree-icon">▣</span>ServerScriptService
-          </a>
-          <a className="tree-row nested" href="#about">
-            <span className="chevron">›</span>
-            <span className="tree-icon script-icon">▤</span>README.luau
-          </a>
-          <a className="tree-row nested" href="#contact">
-            <span className="chevron">›</span>
-            <span className="tree-icon">▣</span>Commissions
-          </a>
-        </div>
-      </section>
-
-      <section className="side-panel properties-panel">
-        <div className="side-heading">
-          <span>PROPERTIES</span>
-          <span className="side-actions">⌕</span>
-        </div>
-        <div className="property-selection">
-          <span className="script-icon">▤</span>
-          <strong>S_ntinel</strong>
-          <small>Developer &amp; UI Designer</small>
-        </div>
-        <div className="property-row">
-          <span>Language</span>
-          <strong>Luau / RoUI</strong>
-        </div>
-        <div className="property-row">
-          <span>UI Styles</span>
-          <strong>6 Commercial Genres</strong>
-        </div>
-        <div className="property-row">
-          <span>UI Screens</span>
-          <strong>{uiShowcaseItems.length} Curated</strong>
-        </div>
-        <div className="property-row">
-          <span>Live Demos</span>
-          <strong>{videos.length} Playable Clips</strong>
-        </div>
-        <div className="property-row">
-          <span>Commissions</span>
-          <strong className="green-text">Open</strong>
-        </div>
-      </section>
-
-      <section className="side-panel output-panel">
-        <div className="side-heading">
-          <span>OUTPUT</span>
-          <span className="side-actions">×</span>
-        </div>
-        <p>
-          <span className="output-dot" /> Portfolio loaded successfully
-        </p>
-        <p>
-          <span className="output-dot" /> {uiShowcaseItems.length} UI screens indexed (6 styles)
-        </p>
-        <p>
-          <span className="output-dot" /> 0{projects.length} project case studies ready
-        </p>
-        <p>
-          <span className="output-dot" /> 0{videos.length} motion &amp; gameplay demos mounted
-        </p>
-      </section>
-    </aside>
-  );
-}
-
 export default function Home() {
+  const marqueeLoop = [...marqueeHighlights, ...marqueeHighlights];
+
   return (
-    <main className="studio-app">
-      <header className="studio-chrome">
-        <div className="studio-titlebar">
-          <a className="brand" href="#top" aria-label="S ntinel home">
-            <img className="brand-logo" src="/sntinel-terminal-logo.svg" alt="S_ntinel" />
+    <div className="page-shell" id="top">
+      {/* Floating Top Identity Bar */}
+      <header className="top-bar-wrap">
+        <div className="top-bar">
+          <a className="brand-cluster" href="#top">
+            <span className="brand-mark">
+              <img src="/sntinel-terminal-logo.svg" alt="S_ntinel" />
+            </span>
+            <span className="brand-text">
+              <strong>S_ntinel</strong>
+              <small>Senior UI Engineer &amp; Luau Systems Dev</small>
+            </span>
           </a>
-          <span className="titlebar-file">
-            S_ntinel Portfolio <small>— Roblox Studio</small>
-          </span>
-          <span className="titlebar-state">
-            <i /> COMMISSIONS OPEN
-          </span>
-          <div className="window-controls" aria-hidden="true">
-            <span>—</span>
-            <span>□</span>
-            <span>×</span>
-          </div>
-        </div>
-        <div className="studio-ribbon">
-          <div className="ribbon-tabs">
-            <span className="active">HOME</span>
-            <span>UI SUITE</span>
-            <span>SYSTEMS</span>
-            <span>DEMOS</span>
-          </div>
-          <div className="ribbon-tools">
-            <a className="tool-button" href="#ui-showcase">
-              <b>▱</b> UI ({uiShowcaseItems.length})
-            </a>
-            <a className="tool-button" href="#work">
-              <b>＋</b> PROJECTS
-            </a>
-            <a className="tool-button" href="#videos">
-              <b>▶</b> DEMOS
+
+          <nav className="top-nav" aria-label="Primary navigation">
+            <a href="#showcase">Showcase</a>
+            <a href="#stack">Stack</a>
+            <a href="#systems">Scripting</a>
+            <a href="#demos">Demos</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+
+          <div className="top-actions">
+            <span className="avail-pill">
+              <i /> Available
+            </span>
+            <a className="btn btn-dark btn-sm" href="#contact">
+              Commission ↗
             </a>
           </div>
         </div>
       </header>
 
-      <nav className="studio-nav" aria-label="Main navigation">
-        <div className="place-tab">
-          <span className="place-dot" /> S_ntinel.rbxl <small>×</small>
-        </div>
-        <div className="nav-links">
-          <a href="#ui-showcase">UI Showcase</a>
-          <a href="#work">Projects</a>
-          <a href="#videos">Demos</a>
-          <a href="#skills">Services</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <a className="run-button" href="#contact">
-          <span>▶</span> Hire / Commission
-        </a>
-      </nav>
+      <main className="main-container">
+        {/* HERO SECTION */}
+        <section className="hero-section">
+          <div className="hero-eyebrow-row">
+            <span className="hero-pill">
+              <span className="pill-dot" /> 10+ Years Roblox Experience · Studio Import Included
+            </span>
+          </div>
 
-      <div className="studio-layout">
-        <div className="workspace-main">
-          <section className="viewport-panel" id="top">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon viewport-icon" /> VIEWPORT
-              </span>
-              <div className="panel-tools">
-                <b>SELECT</b>
-                <b>UI</b>
-                <b>SCRIPT</b>
-                <b>PLAY</b>
-              </div>
-            </div>
-            <div className="viewport-content">
-              <div className="hero-copy">
-                <p className="eyebrow">
-                  <span className="status-dot" /> Roblox Studio · Luau Developer &amp; UI Designer
-                </p>
-                <h1>
-                  Commercial Roblox UI &amp; systems that <em>players can feel.</em>
-                </h1>
-                <p className="hero-lede">
-                  I design full-game Roblox UI suites across 6+ visual styles—and script the
-                  server-authoritative Luau systems, vehicles, inventories, and 60fps animations
-                  that power them.
-                </p>
-                <div className="hero-actions">
-                  <a className="button button-primary" href="#ui-showcase">
-                    Browse 32 UI screens <span>↓</span>
-                  </a>
-                  <a className="text-link" href="#videos">
-                    Watch live demos <span>▶</span>
-                  </a>
-                </div>
-                <div className="hero-proof">
-                  <span>32 UI Screens</span>
-                  <i>×</i>
-                  <span>6 Commercial Styles</span>
-                  <i>×</i>
-                  <span>6 Live Demos</span>
-                  <i>×</i>
-                  <span>Full Luau Systems</span>
-                </div>
-              </div>
-              <div className="viewport-scene" aria-hidden="true">
-                <div className="scene-grid" />
-                <div className="scene-axis axis-x" />
-                <div className="scene-axis axis-y" />
-                <div className="scene-axis axis-z" />
-                <div className="scene-block">
-                  <div />
-                  <div />
-                  <div />
-                </div>
-                <div className="selection-corners">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="scene-label">
-                  <span className="green-text">SELECTED</span>
-                  <br />
-                  S_NTINEL / UI + LUAU
-                </div>
-                <div className="scene-cursor">+</div>
-              </div>
-            </div>
-            <div className="panel-status">
-              <span>
-                <i className="status-dot" /> READY FOR COMMISSIONS
-              </span>
-              <span>ROUI + LUAU</span>
-              <span>DESKTOP · MOBILE · CONSOLE</span>
-            </div>
-          </section>
+          <h1 className="hero-title">
+            Commercial Roblox UI &amp; systems <em>built to ship.</em>
+          </h1>
 
-          <UIShowcase />
+          <p className="hero-subtitle">
+            I design full-game Roblox UI suites across <strong>8+ visual styles</strong>, compile
+            them natively into Studio through my personal <strong>RoUI</strong> engine (PC · Mobile
+            · Console verified), and power them with my private <strong>S_ngine</strong> &amp;{' '}
+            <strong>Luau</strong> gameplay architecture—no raw PNG dumps, no extra Studio import
+            fees.
+          </p>
 
-          <section className="studio-panel work-panel" id="work">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon folder-icon" /> SELECTED PROJECTS &amp; SYSTEMS
-              </span>
-              <small>0{projects.length} CASE STUDIES</small>
+          <div className="hero-ctas">
+            <a className="btn btn-dark btn-lg" href="#pricing">
+              View Plans &amp; Pricing
+            </a>
+            <a className="btn btn-light btn-lg" href="#showcase">
+              Explore {uiShowcaseItems.length} Screens ↓
+            </a>
+          </div>
+
+          <div className="hero-stats-strip">
+            <div className="stat-item">
+              <strong>10+ Yrs</strong>
+              <span>Roblox Studio &amp; Luau</span>
             </div>
-            <div className="section-intro-row">
-              <div>
-                <p className="eyebrow">Project files</p>
-                <h2>
-                  Games &amp; systems I&apos;ve been <em>building.</em>
-                </h2>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <strong>{uiShowcaseItems.length}</strong>
+              <span>Curated Production Screens</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <strong>8+ Styles</strong>
+              <span>Empire · Sim · Anime · CAD · RP</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <strong>14 Demos</strong>
+              <span>6 Animated UI · 8 Live Luau</span>
+            </div>
+          </div>
+
+          {/* Dual Auto-Playing Hero Reels */}
+          <div className="hero-reels">
+            <div className="reel-card">
+              <div className="reel-label-row">
+                <span className="reel-tag">60 FPS ANIMATED UI</span>
+                <small>Whole-State Spritesheets · Zero Flat Tweens</small>
               </div>
-              <p>
-                End-to-end Roblox projects spanning full commercial UI suites, gameplay scripting,
-                vehicle &amp; railway simulation, and custom Studio tooling.
-              </p>
+              <div className="reel-frame">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/portfolio/bleach-stats.webp"
+                  src="/videos/bleach-complete-ui-60fps.mp4"
+                />
+              </div>
             </div>
-            <div className="projects">
-              {projects.map((project) => (
-                <article className={`project-card ${project.accent}`} key={project.number}>
-                  <div className="project-preview">
-                    <img src={project.image} alt={project.imageAlt} loading="lazy" />
-                    <span className="project-preview-type">{project.type}</span>
+
+            <div className="reel-card">
+              <div className="reel-label-row">
+                <span className="reel-tag tag-sys">LIVE LUAU SYSTEMS</span>
+                <small>Combat · Stealth · Ballistics · S_ngine</small>
+              </div>
+              <div className="reel-frame">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/portfolio/ic-black-market-real.webp"
+                  src="/videos/gun-ballistics-demo.mp4"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Infinite Showcase Marquee */}
+          <div className="marquee-wrap" aria-label="Featured UI highlights">
+            <div className="marquee-track">
+              {marqueeLoop.map((item, index) => (
+                <a
+                  href="#showcase"
+                  className="marquee-card"
+                  key={`${item.id}-${index}`}
+                >
+                  <div className="marquee-img-wrap">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      draggable={false}
+                      className="protected-img"
+                    />
+                    <div className="anti-scrape-shield" aria-hidden="true" />
                   </div>
-                  <div className="project-window">
-                    <div className="project-window-bar">
-                      <span className="traffic">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span>{project.file}</span>
-                      <small>Luau</small>
-                    </div>
-                    <div className="code-lines">
-                      {project.code.map((line, index) => (
-                        <p key={`${project.number}-${index}`}>
-                          <b>{String(index + 1).padStart(2, '0')}</b>
-                          <code>{line}</code>
-                        </p>
-                      ))}
-                    </div>
+                  <div className="marquee-caption">
+                    <span>{item.project}</span>
+                    <small>{item.styleLabel}</small>
                   </div>
-                  <div className="project-body">
-                    <p className="project-kicker">
-                      {project.number} / {project.project}
-                    </p>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div className="project-work">
-                      <span>MY CONTRIBUTION</span>
-                      <p>{project.contribution}</p>
-                    </div>
-                    <div className="project-footer">
-                      <div className="tags">
-                        {project.tags.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                      <small>{project.status}</small>
-                    </div>
-                  </div>
-                </article>
+                </a>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="studio-panel demos-panel" id="videos">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon play-icon" /> PLAY TEST &amp; MOTION DEMOS
-              </span>
-              <small>0{videos.length} PLAYABLE CLIPS</small>
-            </div>
-            <div className="section-intro-row">
-              <div>
-                <p className="eyebrow">Live recordings</p>
-                <h2>
-                  See the work <br />
-                  <em>in motion.</em>
-                </h2>
-              </div>
-              <p>
-                60fps animated UI sequences, whole-state spritesheet button transitions, and live
-                Roblox Studio gameplay recordings.
-              </p>
-            </div>
-            <div className="videos">
-              {videos.map((video) => (
-                <VideoCard key={video.number} video={video} />
-              ))}
-            </div>
-            <p className="evidence-note">
-              <span>VERIFIED MEDIA</span> Every clip above is captured directly from active
-              commissions, animated UI pipelines, and Roblox Studio runtime tests.
+        {/* FULL 52-SCREEN FILTERABLE SHOWCASE */}
+        <UIShowcase />
+
+        {/* PROPRIETARY ENGINEERING STACK */}
+        <section className="section-block" id="stack">
+          <div className="section-header">
+            <span className="section-pill">PROPRIETARY TOOLCHAIN</span>
+            <h2>
+              Not just Figma. <em>Custom Roblox engineering tools.</em>
+            </h2>
+            <p className="section-subtitle">
+              Every commission runs through my own production stack—guaranteeing mobile TouchGui
+              safe zones, stationary spritesheet hitboxes, and leak-free strict Luau.
             </p>
-          </section>
+          </div>
 
-          <section className="studio-panel skills-panel" id="skills">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon gear-icon" /> TOOLBOX · SERVICES
-              </span>
-              <small>AVAILABLE FOR HIRE</small>
-            </div>
-            <div className="section-intro-row">
-              <div>
-                <p className="eyebrow">What I can build for you</p>
-                <h2>
-                  Commissionable UI.
-                  <br />
-                  <em>Production systems.</em>
-                </h2>
+          <div className="stack-bento">
+            {proprietaryTools.map((tool) => (
+              <article
+                className={`stack-card ${tool.image ? 'stack-card-featured' : ''}`}
+                key={tool.id}
+              >
+                <div className="stack-card-content">
+                  <span className="stack-badge">{tool.badge}</span>
+                  <h3>{tool.name}</h3>
+                  <p className="stack-tagline">{tool.tagline}</p>
+                  <p className="stack-desc">{tool.description}</p>
+                  <ul className="stack-list">
+                    {tool.highlights.map((h) => (
+                      <li key={h}>
+                        <span className="stack-bullet" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {tool.image && (
+                  <div className="stack-media">
+                    <img
+                      src={tool.image}
+                      alt={tool.imageAlt ?? tool.name}
+                      loading="lazy"
+                      draggable={false}
+                      className="protected-img"
+                    />
+                    <div className="anti-scrape-shield" aria-hidden="true" />
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* DEDICATED S_NGINE ARCHITECTURE BREAKDOWN */}
+        <section className="section-block" id="sngine">
+          <div className="section-header">
+            <span className="section-pill">PRIVATE LUAU ARCHITECTURE · 218 MODULES</span>
+            <h2>
+              Inside <em>S_ngine.</em>
+            </h2>
+            <p className="section-subtitle">
+              44,000+ lines of modular, policy-first Luau split cleanly across ReplicatedStorage and
+              ServerStorage—giving every game ECS ballistics, binary-buffer Zstandard netcode,
+              ProfileStore ledgers, and deterministic replay testing out of the box.
+            </p>
+          </div>
+
+          <div className="sngine-board">
+            <div className="sngine-col">
+              <div className="sngine-col-head">
+                <span className="sngine-boundary-pill pill-shared">SHARED · REPLICATES</span>
+                <code>ReplicatedStorage.S_ngine.Engine</code>
               </div>
-              <p>
-                Hire me for complete multi-screen UI suites, animated storefronts, core gameplay
-                scripting, or refactoring legacy Roblox codebases.
-              </p>
-            </div>
-            <div className="capabilities">
-              {capabilities.map(([number, title, description, items]) => (
-                <div className="capability" key={number}>
-                  <span>{number}</span>
-                  <div>
-                    <strong>{title}</strong>
-                    <p>{description}</p>
-                    <div className="tags capability-tags">
-                      {items.map((item) => (
-                        <span key={item}>{item}</span>
+              <div className="sngine-sub-list">
+                {sngineSharedSubsystems.map((sub) => (
+                  <div className="sngine-sub-row" key={sub.name}>
+                    <div className="sngine-sub-top">
+                      <strong>{sub.name}</strong>
+                      <span>{sub.modules} modules</span>
+                    </div>
+                    <p>{sub.summary}</p>
+                    <div className="sngine-files">
+                      {sub.keyFiles.map((f) => (
+                        <code key={f}>{f}</code>
                       ))}
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="studio-panel about-panel" id="about">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon script-icon" /> ABOUT S_NTINEL
-              </span>
-              <small>README.luau</small>
-            </div>
-            <div className="about-layout">
-              <div>
-                <p className="eyebrow">README</p>
-                <h2>
-                  Visual polish on the surface.
-                  <br />
-                  <em>Rock-solid Luau underneath.</em>
-                </h2>
-                <p className="about-copy">
-                  Most teams have to hire separately for UI design, UI implementation, and gameplay
-                  scripting. I bridge the entire pipeline—taking a concept from illustrated mockup
-                  to responsive Roblox Studio hierarchy and server-authoritative code.
-                </p>
-              </div>
-              <div className="principles">
-                {principles.map(([number, title, description]) => (
-                  <div className="principle" key={number}>
-                    <span className="principle-number">{number}</span>
-                    <h3>{title}</h3>
-                    <p>{description}</p>
                   </div>
                 ))}
               </div>
             </div>
-          </section>
 
-          <section className="studio-panel contact-panel" id="contact">
-            <div className="panel-heading">
-              <span>
-                <i className="panel-icon terminal-icon" /> OUTPUT / NEXT STEP
-              </span>
-              <small>COMMISSIONS OPEN</small>
-            </div>
-            <div className="contact-content">
-              <div>
-                <p className="eyebrow">Get in touch</p>
-                <h2>
-                  Need a full UI suite or
-                  <br />
-                  Roblox system <em>built right?</em>
-                </h2>
-                <p>
-                  Available for commercial Roblox UI commissions (any of the 6 styles showcased
-                  above), animated storefronts, gameplay scripting, and systems rewrites.
-                </p>
+            <div className="sngine-col sngine-col-server">
+              <div className="sngine-col-head">
+                <span className="sngine-boundary-pill pill-server">SERVER ONLY · ZERO REPLICATION</span>
+                <code>ServerStorage.S_ngine.Engine</code>
               </div>
-              <div className="contact-actions">
+              <div className="sngine-sub-list">
+                {sngineServerSubsystems.map((sub) => (
+                  <div className="sngine-sub-row" key={sub.name}>
+                    <div className="sngine-sub-top">
+                      <strong>{sub.name}</strong>
+                      <span>{sub.modules} modules</span>
+                    </div>
+                    <p>{sub.summary}</p>
+                    <div className="sngine-files">
+                      {sub.keyFiles.map((f) => (
+                        <code key={f}>{f}</code>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="sngine-guarantee">
+                <strong>Zero Client Trust:</strong> Every remote payload is schema-validated,
+                server-admitted, and audited by Roblox Cortex AST checks before shipping.
+              </div>
+            </div>
+          </div>
+
+          {/* Real Shipped Codebases Coverage */}
+          <div className="codebases-wrap">
+            <div className="codebases-head">
+              <span className="brief-badge">VERIFIED PRODUCTION COVERAGE</span>
+              <h3>Real systems shipped across 6 major Roblox codebases</h3>
+            </div>
+            <div className="codebases-grid">
+              {shippedCodebases.map((cb) => (
+                <article className="codebase-card" key={cb.project}>
+                  <div className="codebase-top">
+                    <strong>{cb.project}</strong>
+                    <span className="codebase-scale">{cb.scale}</span>
+                  </div>
+                  <small className="codebase-genre">{cb.genre}</small>
+                  <div className="codebase-tags">
+                    {cb.systemsCovered.map((s) => (
+                      <span key={s}>{s}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* GAMEPLAY SCRIPTING SYSTEMS */}
+        <section className="section-block" id="systems">
+          <div className="section-header">
+            <span className="section-pill">LUAU GAMEPLAY ENGINEERING</span>
+            <h2>
+              Full-stack Roblox scripting <em>under the hood.</em>
+            </h2>
+            <p className="section-subtitle">
+              Hire me for UI alone, scripting alone, or the complete turnkey loop—authoritative
+              server logic, clean 2-phase lifecycles, and zero-bloat modules your team can extend.
+            </p>
+          </div>
+
+          <div className="systems-grid">
+            {scriptingSystems.map((sys) => (
+              <article className="system-card" key={sys.number}>
+                <div className="system-card-top">
+                  <span className="system-num">{sys.number}</span>
+                  <div className="system-top-meta">
+                    <span className="system-cat">{sys.category}</span>
+                    <small className="system-scale">{sys.scale}</small>
+                  </div>
+                </div>
+                <h3>{sys.title}</h3>
+                <p>{sys.description}</p>
+                <div className="code-preview-box">
+                  <div className="code-preview-bar">
+                    <span>{sys.snippetFile}</span>
+                    <small>Luau · Strict</small>
+                  </div>
+                  <pre className="code-preview-body">
+                    <code>{sys.snippet.join('\n')}</code>
+                  </pre>
+                </div>
+                <div className="system-tags">
+                  {sys.stack.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* PLAYABLE VIDEO DEMOS */}
+        <DemosSection />
+
+        {/* INTERACTIVE PRICING & FAQ */}
+        <PricingAndFaq />
+
+        {/* CONTACT CTA */}
+        <section className="section-block" id="contact">
+          <div className="contact-hero-card">
+            <div className="contact-left">
+              <span className="avail-pill avail-dark">
+                <i /> Commissions Open · Q4 2026
+              </span>
+              <h2>
+                Ready to build something <em>players trust?</em>
+              </h2>
+              <p>
+                Send your game genre, screen list or scripting scope, target style, and timeline.
+                Clean unwatermarked 1:1 Studio proofs and live place tests are shared directly with
+                serious studios and clients.
+              </p>
+              <div className="contact-buttons">
                 <a
-                  className="button button-primary"
+                  className="btn btn-cta btn-lg"
                   href="https://github.com/S-ntineDevelopment"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  View my GitHub <span>↗</span>
+                  GitHub · S-ntineDevelopment ↗
                 </a>
                 <a
-                  className="contact-link"
+                  className="btn btn-ghost-light btn-lg"
                   href="https://github.com/S-ntineDevelopment/S-ntineDevelopment.github.io"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  View portfolio source <span>↗</span>
+                  Portfolio Source ↗
                 </a>
               </div>
             </div>
-          </section>
 
-          <footer className="studio-footer">
-            <span>© 2026 S_ntinel</span>
-            <span>Roblox Studio · Luau Developer &amp; Commercial UI Designer</span>
-            <a href="#top">Back to top ↑</a>
-          </footer>
+            <div className="contact-right">
+              <div className="brief-checklist">
+                <span className="checklist-heading">FAST QUOTE CHECKLIST</span>
+                <ol>
+                  <li>
+                    <strong>Scope:</strong> Single screen, full UI suite, or Luau gameplay system
+                  </li>
+                  <li>
+                    <strong>Style:</strong> Pick from the 8 genres above or share references
+                  </li>
+                  <li>
+                    <strong>Delivery:</strong> Studio-ready UI, wired Luau runtime, or 100% vector
+                  </li>
+                  <li>
+                    <strong>Budget &amp; Timeline:</strong> USD (preferred) or DevEx Robux
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <span>© 2026 S_ntinel · Senior Roblox UI Engineer &amp; Luau Developer</span>
+          <span>RoUI Studio · Roblox Cortex · S_ngine</span>
+          <a href="#top">Back to top ↑</a>
         </div>
-        <ExplorerPanel />
-      </div>
+      </footer>
 
-      <div className="studio-statusbar">
-        <span>
-          <i className="status-dot" /> S_ntinel Portfolio
-        </span>
-        <span>32 UI Screens · 6 Case Studies · 6 Demos</span>
-        <span>Roblox Studio theme / web portfolio</span>
-      </div>
-    </main>
+      {/* Persistent Floating Bottom Dock */}
+      <nav className="floating-dock" aria-label="Quick section dock">
+        <a href="#top" title="Top">
+          Home
+        </a>
+        <a href="#showcase" title="UI Vault">
+          UI ({uiShowcaseItems.length})
+        </a>
+        <a href="#stack" title="Proprietary Stack">
+          Stack
+        </a>
+        <a href="#systems" title="Luau Scripting">
+          Scripting
+        </a>
+        <a href="#demos" title="Live Demos">
+          Demos
+        </a>
+        <a href="#pricing" title="Pricing" className="dock-cta">
+          Pricing
+        </a>
+      </nav>
+    </div>
   );
 }

@@ -4,178 +4,174 @@ import { useEffect, useMemo, useState } from 'react';
 import {
   uiShowcaseItems,
   uiStyleCategories,
-  type UIShowcaseItem,
   type UIStyleId,
+  type UIShowcaseItem,
 } from '../data/portfolioData';
+
+const INITIAL_ALL_LIMIT = 12;
 
 export default function UIShowcase() {
   const [activeStyle, setActiveStyle] = useState<UIStyleId>('all');
   const [showAll, setShowAll] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<UIShowcaseItem | null>(null);
 
-  const activeCategory = useMemo(
-    () => uiStyleCategories.find((cat) => cat.id === activeStyle) ?? uiStyleCategories[0],
-    [activeStyle]
-  );
+  const counts = useMemo(() => {
+    const map: Record<UIStyleId, number> = {
+      all: uiShowcaseItems.length,
+      idle: 0,
+      squishie: 0,
+      bleach: 0,
+      adn: 0,
+      tooling: 0,
+    };
+    for (const item of uiShowcaseItems) {
+      map[item.styleId] += 1;
+    }
+    return map;
+  }, []);
 
   const filteredItems = useMemo(() => {
     if (activeStyle === 'all') {
-      return uiShowcaseItems;
+      const featured = uiShowcaseItems.filter((item) => item.featured);
+      const rest = uiShowcaseItems.filter((item) => !item.featured);
+      return [...featured, ...rest];
     }
     return uiShowcaseItems.filter((item) => item.styleId === activeStyle);
   }, [activeStyle]);
 
-  const visibleItems = useMemo(() => {
-    if (activeStyle !== 'all' || showAll) {
-      return filteredItems;
-    }
-    // Curated cross-style spread: 2 flagship screens from each of the 6 styles = 12 screens
-    const perStyle = new Map<string, number>();
-    const spread: UIShowcaseItem[] = [];
-    for (const item of filteredItems) {
-      const count = perStyle.get(item.styleId) ?? 0;
-      if (count < 2) {
-        spread.push(item);
-        perStyle.set(item.styleId, count + 1);
-      }
-    }
-    return spread;
-  }, [activeStyle, filteredItems, showAll]);
+  const visibleItems =
+    activeStyle === 'all' && !showAll
+      ? filteredItems.slice(0, INITIAL_ALL_LIMIT)
+      : filteredItems;
 
-  const selectedIndex = useMemo(
-    () => (selectedId ? filteredItems.findIndex((item) => item.id === selectedId) : -1),
-    [filteredItems, selectedId]
-  );
+  const activeCategory =
+    uiStyleCategories.find((c) => c.id === activeStyle) ?? uiStyleCategories[0];
 
-  const selectedItem = selectedIndex >= 0 ? filteredItems[selectedIndex] : null;
+  const selectedIndex = selectedItem
+    ? filteredItems.findIndex((item) => item.id === selectedItem.id)
+    : -1;
 
   useEffect(() => {
     if (!selectedItem) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setSelectedId(null);
-      } else if (event.key === 'ArrowRight') {
+        setSelectedItem(null);
+      } else if (event.key === 'ArrowRight' && selectedIndex >= 0) {
         const next = filteredItems[(selectedIndex + 1) % filteredItems.length];
-        if (next) setSelectedId(next.id);
-      } else if (event.key === 'ArrowLeft') {
-        const prev = filteredItems[(selectedIndex - 1 + filteredItems.length) % filteredItems.length];
-        if (prev) setSelectedId(prev.id);
+        if (next) setSelectedItem(next);
+      } else if (event.key === 'ArrowLeft' && selectedIndex >= 0) {
+        const prev =
+          filteredItems[(selectedIndex - 1 + filteredItems.length) % filteredItems.length];
+        if (prev) setSelectedItem(prev);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [filteredItems, selectedIndex, selectedItem]);
+  }, [selectedItem, selectedIndex, filteredItems]);
 
-  const countForStyle = (styleId: UIStyleId) =>
-    styleId === 'all'
-      ? uiShowcaseItems.length
-      : uiShowcaseItems.filter((item) => item.styleId === styleId).length;
+  const blockContext = (e: React.MouseEvent) => e.preventDefault();
 
   return (
-    <section className="studio-panel ui-showcase-panel" id="ui-showcase">
-      <div className="panel-heading">
-        <span>
-          <i className="panel-icon ui-icon" /> UI DESIGN SHOWCASE
-        </span>
-        <small>{uiShowcaseItems.length} SCREENS · 6 STYLES</small>
-      </div>
-
-      <div className="section-intro-row">
-        <div>
-          <p className="eyebrow">Commission-ready UI styles</p>
-          <h2>
-            Interfaces built to <em>sell &amp; ship.</em>
-          </h2>
-        </div>
-        <p>
-          Full-game UI suites authored across 6 distinct Roblox genres—built for crisp readability,
-          responsive scaling, and whole-state spritesheet animation.
+    <section className="section-block" id="showcase">
+      <div className="section-header">
+        <span className="section-pill">CURATED VAULT · {uiShowcaseItems.length} SCREENS</span>
+        <h2>
+          Built across <em>8+ commercial styles.</em>
+        </h2>
+        <p className="section-subtitle">
+          Every screen below is built for real Roblox production—clean hierarchy, crisp typography,
+          and responsive across PC, Mobile, and Console. Public previews carry subtle watermarks;
+          unwatermarked 1:1 Studio builds are shared directly with clients.
         </p>
       </div>
 
-      <div className="style-filter-bar" role="tablist" aria-label="Filter UI showcase by style">
+      <div className="filter-bar" role="tablist" aria-label="Filter showcase by genre">
         {uiStyleCategories.map((cat) => {
-          const isActive = cat.id === activeStyle;
+          const isActive = activeStyle === cat.id;
           return (
             <button
               key={cat.id}
               type="button"
               role="tab"
               aria-selected={isActive}
-              className={`style-tab ${isActive ? 'active' : ''}`}
+              className={`filter-pill ${isActive ? 'active' : ''}`}
               onClick={() => {
                 setActiveStyle(cat.id);
-                setSelectedId(null);
+                setShowAll(false);
               }}
             >
               <span>{cat.label}</span>
-              <small>{String(countForStyle(cat.id)).padStart(2, '0')}</small>
+              <small>{counts[cat.id]}</small>
             </button>
           );
         })}
       </div>
 
-      <div className="style-brief">
+      <div className="category-brief">
         <div>
-          <span className="style-brief-tag">{activeCategory.shortLabel}</span>
+          <span className="brief-badge">{activeCategory.shortLabel}</span>
           <p>{activeCategory.tagline}</p>
         </div>
-        <div className="style-brief-meta">
+        <div className="brief-meta">
           <span>BEST FOR</span>
           <strong>{activeCategory.bestFor}</strong>
         </div>
       </div>
 
-      <div className="ui-grid">
+      <div className="showcase-grid">
         {visibleItems.map((item) => (
-          <article className="ui-card" key={item.id}>
+          <article className="showcase-card" key={item.id}>
             <button
               type="button"
-              className="ui-card-trigger"
-              onClick={() => setSelectedId(item.id)}
-              aria-label={`Inspect ${item.title} (${item.styleLabel})`}
+              className="showcase-card-btn"
+              onClick={() => setSelectedItem(item)}
+              onContextMenu={blockContext}
+              aria-label={`Inspect ${item.title}`}
             >
-              <div className="ui-thumb-wrap">
-                <img src={item.image} alt={`${item.title} — ${item.project}`} loading="lazy" />
-                <span className="ui-style-pill">{item.styleLabel}</span>
-                <span className="ui-inspect-hint">INSPECT ↗</span>
+              <div className="showcase-media-stage">
+                <div className="showcase-frame-tilt">
+                  <img
+                    src={item.image}
+                    alt={`${item.title} — ${item.project}`}
+                    loading="lazy"
+                    draggable={false}
+                    className="protected-img"
+                  />
+                  <div className="anti-scrape-shield" aria-hidden="true" />
+                </div>
+                <span className="card-style-tag">{item.styleLabel}</span>
+                <span className="card-inspect-pill">Inspect ↗</span>
               </div>
-              <div className="ui-card-body">
-                <div className="ui-card-kicker">
-                  <span>{item.project}</span>
-                  <small>{item.screenType}</small>
+
+              <div className="showcase-card-body">
+                <div className="card-meta-row">
+                  <span className="card-project">{item.project}</span>
+                  <span className="card-type">{item.screenType}</span>
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.summary}</p>
+                <div className="card-deliverables">
+                  {item.deliverables.map((d) => (
+                    <span key={d}>{d}</span>
+                  ))}
+                </div>
               </div>
             </button>
           </article>
         ))}
       </div>
 
-      {activeStyle === 'all' && !showAll && filteredItems.length > visibleItems.length && (
-        <div className="ui-expand-row">
+      {activeStyle === 'all' && !showAll && filteredItems.length > INITIAL_ALL_LIMIT && (
+        <div className="expand-bar">
           <button
             type="button"
-            className="button button-secondary"
+            className="btn btn-dark"
             onClick={() => setShowAll(true)}
           >
-            Load all {filteredItems.length} UI screens (+{filteredItems.length - visibleItems.length} more)
+            Show all {filteredItems.length} curated screens (+
+            {filteredItems.length - INITIAL_ALL_LIMIT} more)
           </button>
-          <span>Or select any style tab above to inspect a full genre suite.</span>
-        </div>
-      )}
-
-      {activeStyle === 'all' && showAll && (
-        <div className="ui-expand-row">
-          <button
-            type="button"
-            className="button button-secondary"
-            onClick={() => setShowAll(false)}
-          >
-            Show compact 12-screen overview
-          </button>
-          <span>Showing all {filteredItems.length} verified UI screens.</span>
+          <span className="expand-hint">Or pick any genre filter above to inspect a full suite.</span>
         </div>
       )}
 
@@ -185,68 +181,82 @@ export default function UIShowcase() {
           role="dialog"
           aria-modal="true"
           aria-label={selectedItem.title}
-          onClick={() => setSelectedId(null)}
+          onClick={() => setSelectedItem(null)}
         >
-          <div className="lightbox-window" onClick={(e) => e.stopPropagation()}>
-            <div className="lightbox-bar">
-              <span>
-                <i className="panel-icon ui-icon" /> UI INSPECTOR · {selectedItem.project.toUpperCase()}
-              </span>
-              <div className="lightbox-controls">
+          <div
+            className="lightbox-modal"
+            onClick={(e) => e.stopPropagation()}
+            onContextMenu={blockContext}
+          >
+            <div className="lightbox-top">
+              <div className="lightbox-title-group">
+                <span className="lightbox-badge">{selectedItem.styleLabel}</span>
+                <strong>{selectedItem.title}</strong>
                 <small>
-                  {String(selectedIndex + 1).padStart(2, '0')} /{' '}
-                  {String(filteredItems.length).padStart(2, '0')}
+                  {selectedItem.project} · {selectedItem.screenType}
                 </small>
+              </div>
+              <div className="lightbox-controls">
                 <button
                   type="button"
+                  className="icon-btn"
+                  aria-label="Previous screen"
                   onClick={() => {
                     const prev =
-                      filteredItems[(selectedIndex - 1 + filteredItems.length) % filteredItems.length];
-                    if (prev) setSelectedId(prev.id);
+                      filteredItems[
+                        (selectedIndex - 1 + filteredItems.length) % filteredItems.length
+                      ];
+                    if (prev) setSelectedItem(prev);
                   }}
-                  aria-label="Previous screen"
                 >
-                  ← Prev
+                  ←
                 </button>
+                <span className="lightbox-counter">
+                  {selectedIndex + 1} / {filteredItems.length}
+                </span>
                 <button
                   type="button"
+                  className="icon-btn"
+                  aria-label="Next screen"
                   onClick={() => {
                     const next = filteredItems[(selectedIndex + 1) % filteredItems.length];
-                    if (next) setSelectedId(next.id);
+                    if (next) setSelectedItem(next);
                   }}
-                  aria-label="Next screen"
                 >
-                  Next →
+                  →
                 </button>
                 <button
                   type="button"
-                  className="lightbox-close"
-                  onClick={() => setSelectedId(null)}
+                  className="icon-btn close-btn"
                   aria-label="Close inspector"
+                  onClick={() => setSelectedItem(null)}
                 >
-                  × Close
+                  ✕
                 </button>
               </div>
             </div>
 
-            <div className="lightbox-content">
-              <div className="lightbox-stage">
-                <img src={selectedItem.image} alt={`${selectedItem.title} full preview`} />
-              </div>
-              <div className="lightbox-meta">
-                <p className="eyebrow">
-                  {selectedItem.styleLabel} · {selectedItem.screenType}
-                </p>
-                <h3>{selectedItem.title}</h3>
-                <p className="lightbox-summary">{selectedItem.summary}</p>
-                <div className="lightbox-deliverables">
-                  <span>DELIVERABLES</span>
-                  <div className="tags">
-                    {selectedItem.deliverables.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
+            <div className="lightbox-stage">
+              <img
+                src={selectedItem.image}
+                alt={`${selectedItem.title} — ${selectedItem.project}`}
+                draggable={false}
+                className="protected-img"
+              />
+              <div className="anti-scrape-shield" aria-hidden="true" />
+            </div>
+
+            <div className="lightbox-footer">
+              <p>{selectedItem.summary}</p>
+              <div className="lightbox-footer-meta">
+                <div className="card-deliverables">
+                  {selectedItem.deliverables.map((d) => (
+                    <span key={d}>{d}</span>
+                  ))}
                 </div>
+                <span className="protection-note">
+                  Protected preview · Clean 1:1 Studio proof on inquiry
+                </span>
               </div>
             </div>
           </div>

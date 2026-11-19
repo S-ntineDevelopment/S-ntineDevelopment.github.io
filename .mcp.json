@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "local-ui": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\jbrah\\Documents\\ChatGPT\\AI Resources for ROBLOX\\tools\\local-design-engine\\mcp_bridge.py"
+      ]
+    }
+  }
+}
